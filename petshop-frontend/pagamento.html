@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pagamento — Casa Focinho</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/estilo.css">
+</head>
+<body data-pagina="index.html">
+
+<div class="aviso" id="aviso" role="status" aria-live="polite"></div>
+
+<header class="cabecalho">
+  <div class="cabecalho-interno">
+    <a href="index.html" class="marca">
+      <svg class="marca-icone" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="15" cy="18" r="7.5" fill="currentColor"/>
+        <circle cx="6" cy="9" r="3" fill="currentColor"/>
+        <circle cx="14" cy="5" r="3" fill="currentColor"/>
+        <circle cx="22" cy="9" r="3" fill="currentColor"/>
+      </svg>
+      <span>Casa Focinho</span>
+    </a>
+    <nav class="menu" id="menu" aria-label="Navegação principal">
+      <a href="index.html" class="menu-link">Loja</a>
+    </nav>
+    <div class="cabecalho-acoes">
+      <div class="acessibilidade" role="group" aria-label="Preferências de acessibilidade">
+        <button type="button" id="fonte-menor" aria-label="Diminuir tamanho da fonte">A-</button>
+        <button type="button" id="fonte-maior" aria-label="Aumentar tamanho da fonte">A+</button>
+        <button type="button" id="alternar-contraste" aria-label="Alternar contraste">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/>
+          </svg>
+        </button>
+      </div>
+      <div class="area-conta" id="area-conta"></div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="pagina-conteudo">
+    <h1>Pagamento</h1>
+    <p class="subtitulo">Confira o pedido e escolha a forma de pagamento.</p>
+
+    <div class="carrinho-layout">
+      <div class="cartao-formulario" style="max-width: none; padding: 1.8rem;">
+        <div class="form-erro-geral" id="erro-geral"></div>
+
+        <div class="metodo-pagamento">
+          <label>
+            <input type="radio" name="metodo" value="credito" checked>
+            <span>Cartão de crédito</span>
+          </label>
+          <label>
+            <input type="radio" name="metodo" value="debito">
+            <span>Cartão de débito</span>
+          </label>
+          <label>
+            <input type="radio" name="metodo" value="pix">
+            <span>Pix</span>
+          </label>
+        </div>
+
+        <div id="area-cartao">
+          <div class="cartao-preview">
+            <div style="font-size: 0.75rem; opacity: 0.8;">Casa Focinho</div>
+            <div class="cartao-preview-numero" id="preview-numero">•••• •••• •••• ••••</div>
+            <div class="cartao-preview-rodape">
+              <span id="preview-nome">NOME NO CARTÃO</span>
+              <span id="preview-validade">••/••</span>
+            </div>
+          </div>
+
+          <form id="form-pagamento" novalidate>
+            <div class="campo-grupo" id="grupo-nome-cartao">
+              <label for="nome_cartao">Nome impresso no cartão</label>
+              <input type="text" id="nome_cartao" autocomplete="cc-name">
+              <p class="campo-erro">Informe o nome como está no cartão.</p>
+            </div>
+            <div class="campo-grupo" id="grupo-numero-cartao">
+              <label for="numero_cartao">Número do cartão</label>
+              <input type="text" id="numero_cartao" inputmode="numeric" placeholder="0000 0000 0000 0000" autocomplete="cc-number">
+              <p class="campo-erro">Número de cartão inválido.</p>
+            </div>
+            <div class="form-linha">
+              <div class="campo-grupo" id="grupo-validade">
+                <label for="validade_cartao">Validade</label>
+                <input type="text" id="validade_cartao" placeholder="MM/AA" maxlength="5" autocomplete="cc-exp">
+                <p class="campo-erro">Use o formato MM/AA.</p>
+              </div>
+              <div class="campo-grupo" id="grupo-cvv">
+                <label for="cvv_cartao">CVV</label>
+                <input type="text" id="cvv_cartao" inputmode="numeric" maxlength="4" autocomplete="cc-csc">
+                <p class="campo-erro">CVV inválido.</p>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div id="area-pix" hidden>
+          <p style="color: var(--tinta-suave);">Ao confirmar, geraremos um código Pix simulado para pagamento.</p>
+        </div>
+
+        <button type="button" class="botao-primario" id="botao-confirmar-pagamento" style="width: 100%; margin-top: 1rem;">Confirmar pagamento</button>
+      </div>
+
+      <div class="resumo-pedido">
+        <h3>Resumo do pedido</h3>
+        <div id="resumo-itens-pagamento"></div>
+        <div class="resumo-linha">
+          <span>Subtotal</span>
+          <span id="pagamento-subtotal"></span>
+        </div>
+        <div class="resumo-linha">
+          <span>Entrega</span>
+          <span id="pagamento-entrega"></span>
+        </div>
+        <div class="resumo-linha total">
+          <span>Total</span>
+          <span id="pagamento-total"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="rodape">
+  <div class="rodape-interno">
+    <div class="rodape-marca">
+      <span class="rodape-titulo">Casa Focinho</span>
+      <p>Pet shop de bairro em Copacabana — ração, higiene e cuidado para cães e gatos.</p>
+    </div>
+    <div class="rodape-coluna">
+      <span class="rodape-subtitulo">Atendimento</span>
+      <p>Seg. a sáb., 9h às 19h</p>
+      <p>(21) 3555-0198</p>
+    </div>
+    <div class="rodape-coluna">
+      <span class="rodape-subtitulo">Endereço</span>
+      <p>Rua Barata Ribeiro, 412 — Copacabana</p>
+      <p>Rio de Janeiro, RJ</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/comum.js"></script>
+<script src="js/pagamento.js"></script>
+</body>
+</html>

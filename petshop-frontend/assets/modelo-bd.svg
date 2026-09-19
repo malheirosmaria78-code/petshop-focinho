@@ -1,0 +1,79 @@
+<svg viewBox="0 0 960 640" xmlns="http://www.w3.org/2000/svg" font-family="Arial, sans-serif">
+  <defs>
+    <style>
+      .titulo { fill: #FFFFFF; font-size: 15px; font-weight: bold; }
+      .campo { fill: #2A2822; font-size: 12.5px; }
+      .campo-pk { fill: #35503F; font-size: 12.5px; font-weight: bold; }
+      .rotulo-linha { fill: #6B6558; font-size: 11px; }
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="960" height="640" fill="#F3EEE2"/>
+
+  <line x1="270" y1="120" x2="560" y2="120" stroke="#B9632E" stroke-width="1.6"/>
+  <text x="410" y="112" text-anchor="middle" class="rotulo-linha">1 usuário → N registros de log</text>
+  <text x="278" y="132" class="rotulo-linha">1</text>
+  <text x="546" y="132" class="rotulo-linha">N</text>
+
+  <line x1="270" y1="430" x2="560" y2="430" stroke="#B9632E" stroke-width="1.6"/>
+  <text x="410" y="422" text-anchor="middle" class="rotulo-linha">1 categoria → N produtos</text>
+  <text x="278" y="442" class="rotulo-linha">1</text>
+  <text x="546" y="442" class="rotulo-linha">N</text>
+
+  <g>
+    <rect x="40" y="40" width="230" height="330" rx="10" fill="#FFFFFF" stroke="#DDD4C0"/>
+    <rect x="40" y="40" width="230" height="34" rx="10" fill="#35503F"/>
+    <rect x="40" y="58" width="230" height="16" fill="#35503F"/>
+    <text x="55" y="63" class="titulo">usuarios</text>
+    <text x="55" y="92" class="campo-pk">id (PK)</text>
+    <text x="55" y="112" class="campo">nome_completo</text>
+    <text x="55" y="132" class="campo">data_nascimento</text>
+    <text x="55" y="152" class="campo">sexo</text>
+    <text x="55" y="172" class="campo">nome_materno</text>
+    <text x="55" y="192" class="campo">cpf (UK)</text>
+    <text x="55" y="212" class="campo">email</text>
+    <text x="55" y="232" class="campo">telefone_celular / fixo</text>
+    <text x="55" y="252" class="campo">cep, logradouro, numero</text>
+    <text x="55" y="272" class="campo">bairro, cidade, uf</text>
+    <text x="55" y="292" class="campo">login (UK)</text>
+    <text x="55" y="312" class="campo">senha_hash</text>
+    <text x="55" y="332" class="campo">resposta_nome_mae / data / cep</text>
+    <text x="55" y="352" class="campo">perfil (master | comum)</text>
+  </g>
+
+  <g>
+    <rect x="560" y="40" width="270" height="190" rx="10" fill="#FFFFFF" stroke="#DDD4C0"/>
+    <rect x="560" y="40" width="270" height="34" rx="10" fill="#35503F"/>
+    <rect x="560" y="58" width="270" height="16" fill="#35503F"/>
+    <text x="575" y="63" class="titulo">log_autenticacao</text>
+    <text x="575" y="92" class="campo-pk">id (PK)</text>
+    <text x="575" y="112" class="campo">usuario_id (FK)</text>
+    <text x="575" y="132" class="campo">nome</text>
+    <text x="575" y="152" class="campo">cpf</text>
+    <text x="575" y="172" class="campo">data_hora</text>
+    <text x="575" y="192" class="campo">pergunta_2fa</text>
+    <text x="575" y="212" class="campo">sucesso</text>
+  </g>
+
+  <g>
+    <rect x="40" y="450" width="200" height="120" rx="10" fill="#FFFFFF" stroke="#DDD4C0"/>
+    <rect x="40" y="450" width="200" height="34" rx="10" fill="#35503F"/>
+    <rect x="40" y="468" width="200" height="16" fill="#35503F"/>
+    <text x="55" y="473" class="titulo">categorias</text>
+    <text x="55" y="502" class="campo-pk">id (PK)</text>
+    <text x="55" y="522" class="campo">nome (UK)</text>
+  </g>
+
+  <g>
+    <rect x="560" y="450" width="270" height="170" rx="10" fill="#FFFFFF" stroke="#DDD4C0"/>
+    <rect x="560" y="450" width="270" height="34" rx="10" fill="#35503F"/>
+    <rect x="560" y="468" width="270" height="16" fill="#35503F"/>
+    <text x="575" y="473" class="titulo">produtos</text>
+    <text x="575" y="502" class="campo-pk">id (PK)</text>
+    <text x="575" y="522" class="campo">categoria_id (FK)</text>
+    <text x="575" y="542" class="campo">nome</text>
+    <text x="575" y="562" class="campo">descricao</text>
+    <text x="575" y="582" class="campo">preco</text>
+    <text x="575" y="602" class="campo">imagem</text>
+  </g>
+</svg>

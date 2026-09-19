@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Produto — Casa Focinho</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/estilo.css">
+</head>
+<body data-pagina="index.html">
+
+<div class="aviso" id="aviso" role="status" aria-live="polite"></div>
+
+<header class="cabecalho">
+  <div class="cabecalho-interno">
+    <a href="index.html" class="marca">
+      <svg class="marca-icone" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="15" cy="18" r="7.5" fill="currentColor"/>
+        <circle cx="6" cy="9" r="3" fill="currentColor"/>
+        <circle cx="14" cy="5" r="3" fill="currentColor"/>
+        <circle cx="22" cy="9" r="3" fill="currentColor"/>
+      </svg>
+      <span>Casa Focinho</span>
+    </a>
+    <nav class="menu" id="menu" aria-label="Navegação principal">
+      <a href="index.html" class="menu-link">Loja</a>
+    </nav>
+    <div class="cabecalho-acoes">
+      <div class="acessibilidade" role="group" aria-label="Preferências de acessibilidade">
+        <button type="button" id="fonte-menor" aria-label="Diminuir tamanho da fonte">A-</button>
+        <button type="button" id="fonte-maior" aria-label="Aumentar tamanho da fonte">A+</button>
+        <button type="button" id="alternar-contraste" aria-label="Alternar contraste">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/>
+          </svg>
+        </button>
+      </div>
+      <div class="area-conta" id="area-conta"></div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="pagina-conteudo">
+    <div id="estado-carregando" class="estado-mensagem">Carregando produto...</div>
+    <div id="estado-erro" class="estado-mensagem estado-erro" hidden>Produto não encontrado.</div>
+
+    <div class="produto-detalhe" id="conteudo-produto" hidden>
+      <div class="produto-detalhe-foto">
+        <img id="produto-imagem" src="" alt="">
+      </div>
+      <div class="produto-detalhe-info">
+        <span class="badge-especie" id="produto-especie"></span>
+        <h1 id="produto-nome"></h1>
+        <p class="produto-detalhe-preco" id="produto-preco"></p>
+        <p class="produto-detalhe-descricao" id="produto-descricao"></p>
+
+        <div class="seletor-quantidade">
+          <button type="button" id="quantidade-menos" aria-label="Diminuir quantidade">−</button>
+          <span id="quantidade-valor">1</span>
+          <button type="button" id="quantidade-mais" aria-label="Aumentar quantidade">+</button>
+        </div>
+
+        <button type="button" class="botao-primario" id="botao-adicionar" style="max-width: 280px;">Adicionar ao carrinho</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="rodape">
+  <div class="rodape-interno">
+    <div class="rodape-marca">
+      <span class="rodape-titulo">Casa Focinho</span>
+      <p>Pet shop de bairro em Copacabana — ração, higiene e cuidado para cães e gatos.</p>
+    </div>
+    <div class="rodape-coluna">
+      <span class="rodape-subtitulo">Atendimento</span>
+      <p>Seg. a sáb., 9h às 19h</p>
+      <p>(21) 3555-0198</p>
+    </div>
+    <div class="rodape-coluna">
+      <span class="rodape-subtitulo">Endereço</span>
+      <p>Rua Barata Ribeiro, 412 — Copacabana</p>
+      <p>Rio de Janeiro, RJ</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/comum.js"></script>
+<script src="js/produto.js"></script>
+</body>
+</html>
