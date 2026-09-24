@@ -5,7 +5,7 @@
 1. Suba o banco de dados executando `sql/schema.sql` no MySQL (cria o banco `petshop`, as tabelas, o usuário master e alguns produtos de exemplo).
 2. Ajuste as credenciais em `config/database.php` se não estiver usando `root` sem senha.
 3. O usuário master já vem criado pelo próprio `schema.sql`, com a senha já em hash bcrypt direto no `INSERT` (sem depender de PHP em tempo de execução):
-   Login: `master` / Senha: `adminpet`
+   Login: `master` / Senha: `Adminp3t`
 4. Ajuste `$origemPermitida` em `includes/cors.php` para o endereço onde o front-end vai rodar (ex.: Live Server do VS Code).
 5. A FPDF já vem incluída em `lib/fpdf/fpdf.php` — não precisa baixar nada à parte.
 
@@ -34,7 +34,7 @@
 
 - CPF validado com dígito verificador
 - Login: exatamente 6 caracteres alfabéticos
-- Senha: exatamente 8 caracteres alfabéticos no cadastro, armazenada com hash bcrypt (`password_hash`)
+- Senha: exatamente 8 caracteres, com letra maiúscula, minúscula e número, armazenada com hash bcrypt (`password_hash`)
 - Telefone no formato `(+55)XX-XXXXXXXX`
 - Nome entre 15 e 80 caracteres
 - 2FA com pergunta sorteada entre nome da mãe / data de nascimento / CEP, bloqueio e log após 3 tentativas

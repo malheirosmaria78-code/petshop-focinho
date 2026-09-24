@@ -34,7 +34,7 @@ INSERT INTO usuarios (
 ) VALUES (
     'Administrador do Sistema Pet Shop', '1990-01-01', 'Outro', 'Nao Informado', '00000000191', 'admin@petshop.local',
     '(+55)21-999999999', '20000000', 'Sede Administrativa', '1', 'Centro', 'Rio de Janeiro', 'RJ',
-    'master', '$2y$10$FcbTgC0ayECgYCeRfzuC.O2lrCWSnTF75iwKa/lzcVNMxjVFHRYAu', 'Nao Informado', '1990-01-01', '20000000', 'master'
+    'master', '$2y$12$YXaQgT4yusnJ/R1EI7dTfe.KCZOnXdCC2R83G60xs/p8PwrPOQJIi', 'Nao Informado', '1990-01-01', '20000000', 'master'
 );
 
 CREATE TABLE log_autenticacao (

@@ -18,7 +18,7 @@ if (empty($dados['senha_atual']) || empty($dados['nova_senha']) || empty($dados[
 }
 
 if (!validarSenha($dados['nova_senha'])) {
-    responderJson(['sucesso' => false, 'mensagem' => 'Nova senha deve ter exatamente 8 caracteres alfabéticos'], 422);
+    responderJson(['sucesso' => false, 'mensagem' => 'Nova senha deve ter exatamente 8 caracteres, com letra maiúscula, minúscula e número'], 422);
 }
 
 if ($dados['nova_senha'] !== $dados['confirmacao_nova_senha']) {
