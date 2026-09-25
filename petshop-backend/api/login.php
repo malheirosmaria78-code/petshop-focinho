@@ -17,7 +17,7 @@ if (empty($dados['login']) || empty($dados['senha'])) {
 
 $pdo = conectarBanco();
 
-$consulta = $pdo->prepare('SELECT * FROM usuarios WHERE login = ?');
+$consulta = $pdo->prepare('SELECT * FROM usuarios WHERE login = ? AND ativo = 1');
 $consulta->execute([$dados['login']]);
 $usuario = $consulta->fetch();
 

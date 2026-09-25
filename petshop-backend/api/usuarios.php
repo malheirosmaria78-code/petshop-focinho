@@ -18,14 +18,14 @@ $pdo = conectarBanco();
 if ($busca !== '') {
     $consulta = $pdo->prepare(
         "SELECT id, nome_completo, cpf, email, login, criado_em FROM usuarios
-         WHERE perfil = 'comum' AND nome_completo LIKE ?
+         WHERE perfil = 'comum' AND ativo = 1 AND nome_completo LIKE ?
          ORDER BY nome_completo"
     );
     $consulta->execute(['%' . $busca . '%']);
 } else {
     $consulta = $pdo->query(
         "SELECT id, nome_completo, cpf, email, login, criado_em FROM usuarios
-         WHERE perfil = 'comum'
+         WHERE perfil = 'comum' AND ativo = 1
          ORDER BY nome_completo"
     );
 }
