@@ -3,8 +3,8 @@
 function conectarBanco(): PDO {
     $host = 'localhost';
     $dbname = 'petshop';
-    $usuario = 'root';
-    $senha = '';
+    $usuario = getenv('PETSHOP_DB_USER') ?: 'root';
+    $senha = getenv('PETSHOP_DB_PASSWORD') ?: '';
 
     $dsn = "mysql:host={$host};dbname={$dbname};charset=utf8mb4";
 

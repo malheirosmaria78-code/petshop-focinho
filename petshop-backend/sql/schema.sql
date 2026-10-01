@@ -24,6 +24,7 @@ CREATE TABLE usuarios (
     resposta_data_nascimento DATE NOT NULL,
     resposta_cep CHAR(8) NOT NULL,
     perfil ENUM('master', 'comum') NOT NULL DEFAULT 'comum',
+    ativo TINYINT(1) NOT NULL DEFAULT 1,
     criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
