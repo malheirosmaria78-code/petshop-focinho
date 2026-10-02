@@ -1,4 +1,4 @@
-const API_BASE = 'http://localhost/petshop-backend/api';
+const API_BASE = 'http://localhost:8000/api';
 
 const CHAVE_CARRINHO = 'carrinho';
 
@@ -121,7 +121,7 @@ function renderizarAreaConta(usuario) {
   `;
 
   const linksMenu = ['<a href="index.html" class="menu-link">Loja</a>'];
-  if (usuario.perfil === 'master') {
+  if (usuario.perfil === '') {
     linksMenu.push('<a href="consulta-usuario.html" class="menu-link">Usuários</a>');
     linksMenu.push('<a href="log.html" class="menu-link">Log</a>');
   } else {

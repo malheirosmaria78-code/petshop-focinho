@@ -21,7 +21,7 @@ function renderizarTabela(usuarios) {
       <td>${usuario.email}</td>
       <td>${usuario.login}</td>
       <td>${formatarDataHora(usuario.criado_em)}</td>
-      <td><button type="button" class="botao-excluir" data-id="${usuario.id}" data-nome="${usuario.nome_completo}">Excluir</button></td>
+      <td><button type="button" class="botao-excluir" data-id="${usuario.id}" data-nome="${usuario.nome_completo}">Desativar</button></td>
     `;
     corpo.appendChild(linha);
   });
@@ -30,7 +30,7 @@ function renderizarTabela(usuarios) {
     botao.addEventListener('click', () => {
       idParaExcluir = botao.dataset.id;
       document.getElementById('modal-texto').textContent =
-        `Tem certeza que deseja excluir ${botao.dataset.nome}? Essa ação não pode ser desfeita.`;
+        `Tem certeza que deseja desativar ${botao.dataset.nome}? Essa pessoa não poderá mais acessar o sistema.`;
       document.getElementById('modal-exclusao').classList.add('aberto');
     });
   });
@@ -70,10 +70,10 @@ document.getElementById('modal-confirmar').addEventListener('click', async () =>
     });
     const dados = await resposta.json();
     if (dados.sucesso) {
-      mostrarAviso('Usuário excluído com sucesso');
+      mostrarAviso('Usuário desativado com sucesso');
       buscarUsuarios(document.getElementById('busca-usuario').value.trim());
     } else {
-      mostrarAviso(dados.mensagem || 'Não foi possível excluir o usuário');
+      mostrarAviso(dados.mensagem || 'Não foi possível desativar o usuário');
     }
   } catch (falha) {
     mostrarAviso('Falha de conexão com o servidor');

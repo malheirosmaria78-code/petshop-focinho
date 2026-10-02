@@ -1,0 +1,2 @@
+ALTER TABLE petshop.usuarios
+ADD COLUMN ativo TINYINT NOT NULL DEFAULT 1;

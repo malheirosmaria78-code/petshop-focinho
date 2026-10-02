@@ -31,7 +31,7 @@ if ($usuario['perfil'] === 'master') {
     responderJson(['sucesso' => false, 'mensagem' => 'Não é permitido excluir um usuário master'], 403);
 }
 
-$exclusao = $pdo->prepare('DELETE FROM usuarios WHERE id = ?');
-$exclusao->execute([$dados['id']]);
+$desativacao = $pdo->prepare("UPDATE usuarios SET ativo = 0 WHERE id = ? AND perfil = 'comum'");
+$desativacao->execute([$dados['id']]);
 
-responderJson(['sucesso' => true, 'mensagem' => 'Usuário excluído com sucesso']);
+responderJson(['sucesso' => true, 'mensagem' => 'Usuário desativado com sucesso']);
