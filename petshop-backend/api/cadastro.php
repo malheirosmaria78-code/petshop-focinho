@@ -48,7 +48,7 @@ if (!validarLogin($dados['login'])) {
 }
 
 if (!validarSenha($dados['senha'])) {
-    responderJson(['sucesso' => false, 'mensagem' => 'Senha deve ter exatamente 8 caracteres alfabéticos'], 422);
+    responderJson(['sucesso' => false, 'mensagem' => 'Senha deve ter exatamente 8 caracteres, com letra maiúscula, minúscula e número'], 422);
 }
 
 if ($dados['senha'] !== $dados['confirmacao_senha']) {

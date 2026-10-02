@@ -27,7 +27,7 @@ function validarLoginFormato(valor) {
 }
 
 function validarSenhaFormato(valor) {
-  return /^[A-Za-z]{8}$/.test(valor);
+  return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8}$/.test(valor);
 }
 
 function marcarCampo(idGrupo, valido) {
@@ -114,11 +114,11 @@ document.getElementById('login').addEventListener('input', (evento) => {
 });
 
 document.getElementById('senha').addEventListener('input', (evento) => {
-  evento.target.value = evento.target.value.replace(/[^A-Za-z]/g, '').slice(0, 8);
+  evento.target.value = evento.target.value.replace(/[^A-Za-z\d]/g, '').slice(0, 8);
 });
 
 document.getElementById('confirmacao_senha').addEventListener('input', (evento) => {
-  evento.target.value = evento.target.value.replace(/[^A-Za-z]/g, '').slice(0, 8);
+  evento.target.value = evento.target.value.replace(/[^A-Za-z\d]/g, '').slice(0, 8);
 });
 
 function validarFormulario() {

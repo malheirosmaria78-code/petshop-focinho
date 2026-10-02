@@ -4,7 +4,7 @@ require_once __DIR__ . '/../config/database.php';
 require_once __DIR__ . '/../includes/funcoes.php';
 
 $login = 'master';
-$senha = 'adminpet';
+$senha = 'Adminp3t';
 
 if (php_sapi_name() !== 'cli') {
     exit('Execute este script pela linha de comando: php scripts/criar_master.php');

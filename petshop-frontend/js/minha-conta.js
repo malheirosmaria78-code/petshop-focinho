@@ -59,12 +59,12 @@ async function carregarDadosConta() {
 }
 
 function validarSenhaFormato(valor) {
-  return /^[A-Za-z]{8}$/.test(valor);
+  return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8}$/.test(valor);
 }
 
 ['senha_atual', 'nova_senha', 'confirmacao_nova_senha'].forEach((id) => {
   document.getElementById(id).addEventListener('input', (evento) => {
-    evento.target.value = evento.target.value.replace(/[^A-Za-z]/g, '').slice(0, 8);
+    evento.target.value = evento.target.value.replace(/[^A-Za-z\d]/g, '').slice(0, 8);
   });
 });
 

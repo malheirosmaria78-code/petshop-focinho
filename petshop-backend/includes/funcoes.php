@@ -39,7 +39,7 @@ function validarLogin(string $login): bool {
 }
 
 function validarSenha(string $senha): bool {
-    return (bool) preg_match('/^[A-Za-z]{8}$/', $senha);
+    return (bool) preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8}$/', $senha);
 }
 
 function validarTelefone(string $telefone): bool {
