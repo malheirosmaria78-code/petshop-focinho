@@ -6,7 +6,7 @@
 2. Ajuste as credenciais em `config/database.php` se não estiver usando `root` sem senha.
 3. O usuário master já vem criado pelo próprio `schema.sql`, com a senha já em hash bcrypt direto no `INSERT` (sem depender de PHP em tempo de execução):
    Login: `master` / Senha: `Adminp3t`
-4. Ajuste `$origemPermitida` em `includes/cors.php` para o endereço onde o front-end vai rodar (ex.: Live Server do VS Code).
+4. Sirva frontend e backend pelo mesmo servidor, conforme o [passo a passo principal](../README.md#como-executar-localmente). A URL da API é resolvida automaticamente; não é necessário alterar CORS nesse modo.
 5. A FPDF já vem incluída em `lib/fpdf/fpdf.php` — não precisa baixar nada à parte.
 
 `scripts/criar_master.php` continua no projeto apenas como utilitário opcional, caso você precise criar um segundo usuário master mais tarde — não é mais necessário para a primeira configuração.

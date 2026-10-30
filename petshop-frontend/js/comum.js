@@ -1,4 +1,5 @@
-const API_BASE = 'http://localhost:8000/api';
+// Resolve a API a partir deste script, preservando a pasta e a porta do projeto.
+const API_BASE = new URL('../../petshop-backend/api', document.currentScript.src).href;
 
 const CHAVE_CARRINHO = 'carrinho';
 
