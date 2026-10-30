@@ -41,6 +41,6 @@
 - Toda ação de master/comum é validada pela sessão PHP (`includes/funcoes.php`), nunca confiando em dado vindo do front-end
 - Usuário master não pode ser excluído via API
 
-## O que o front-end precisa fazer
+
 
 Todas as respostas são JSON. Use `fetch(..., { credentials: 'include' })` em todas as chamadas para que o cookie de sessão seja enviado. A validação de CEP via API (ViaCEP) e a máscara de campos continuam sendo responsabilidade do front-end — o back-end apenas valida o formato final recebido.
