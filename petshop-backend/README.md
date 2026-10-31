@@ -2,8 +2,8 @@
 
 ## Setup
 
-1. Suba o banco de dados executando `sql/schema.sql` no MySQL (cria o banco `petshop`, as tabelas, o usuário master e alguns produtos de exemplo).
-2. Ajuste as credenciais em `config/database.php` se não estiver usando `root` sem senha.
+1. Com MySQL ligado, execute `php scripts/instalar_banco.php` nesta pasta para criar ou completar o banco, preservando dados existentes. O `sql/schema.sql` serve para instalação manual em banco novo.
+2. O instalador aceita `PETSHOP_DB_USER` e `PETSHOP_DB_PASSWORD`, mas a conexão do site ainda usa os valores de `config/database.php`. A senha informada ao instalador vale apenas para aquela execução. Separar as credenciais locais do código versionado é uma melhoria pendente; não envie senhas pessoais ao Git.
 3. O usuário master já vem criado pelo próprio `schema.sql`, com a senha já em hash bcrypt direto no `INSERT` (sem depender de PHP em tempo de execução):
    Login: `master` / Senha: `Adminp3t`
 4. Sirva frontend e backend pelo mesmo servidor, conforme o [passo a passo principal](../README.md#como-executar-localmente). A URL da API é resolvida automaticamente; não é necessário alterar CORS nesse modo.

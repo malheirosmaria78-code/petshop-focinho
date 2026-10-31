@@ -47,16 +47,16 @@ O frontend encontra a API automaticamente, sem fixar nome da pasta, domínio ou 
 
 1. Coloque a pasta do projeto dentro de `C:\xampp\htdocs`.
 2. Inicie **Apache** e **MySQL** no painel do XAMPP.
-3. Na primeira configuração, importe `petshop-backend/sql/schema.sql` pelo phpMyAdmin. Não precisa importar novamente a cada execução.
+3. Prepare o banco com o instalador descrito abaixo. Basta executar na configuração inicial ou ao completar um banco antigo.
 4. Acesse `http://localhost/NOME-DA-PASTA/petshop-frontend/`, substituindo `NOME-DA-PASTA` pelo nome da pasta dentro de `htdocs`.
 
 ### Linux com PHP e MySQL instalados
 
 1. Inicie o MySQL: `sudo service mysql start`.
-2. Na primeira configuração, importe o banco a partir da pasta principal do projeto:
+2. Prepare o banco a partir da pasta principal do projeto:
 
    ```bash
-   mysql -u root -p < petshop-backend/sql/schema.sql
+   php petshop-backend/scripts/instalar_banco.php
    ```
 
 3. Na pasta principal (que contém frontend e backend), inicie:
@@ -71,16 +71,44 @@ O PHP precisa da extensão `pdo_mysql`. Não é necessário iniciar outro servid
 
 ### Credenciais locais do banco
 
-O banco se chama `petshop`. Por padrão, a conexão usa `root` sem senha.
-Se seu banco usa outras credenciais, configure as variáveis de ambiente
-`PETSHOP_DB_USER` e `PETSHOP_DB_PASSWORD` no ambiente que executa o PHP,
-sem colocar senhas pessoais no repositório. No Linux, por exemplo:
+O banco se chama `petshop`. A conexão do site usa as credenciais definidas em
+`petshop-backend/config/database.php`; esse arquivo ainda não lê variáveis de ambiente.
+Não coloque credenciais pessoais em commits. Separar essa configuração do código
+versionado é uma melhoria pendente antes de configurar acesso compartilhado.
+
+O instalador, por sua vez, aceita `PETSHOP_DB_USER` e `PETSHOP_DB_PASSWORD`.
+As credenciais usadas no instalador não configuram automaticamente a conexão do site.
+
+### Instalar ou completar o banco com um comando
+
+Na pasta principal do projeto, execute:
 
 ```bash
-PETSHOP_DB_USER=seu_usuario PETSHOP_DB_PASSWORD='sua_senha' php -S localhost:8000
+php petshop-backend/scripts/instalar_banco.php
 ```
 
-No XAMPP, as variáveis precisam estar disponíveis para o Apache; reinicie-o após configurá-las.
+No Windows com XAMPP, use:
+
+```powershell
+C:\xampp\php\php.exe petshop-backend/scripts/instalar_banco.php
+```
+
+O MySQL deve estar ligado. O instalador pede a senha do MySQL (a entrada fica
+visivel); no XAMPP sem senha, pressione Enter. Tambem aceita as variaveis
+`PETSHOP_DB_USER` e `PETSHOP_DB_PASSWORD`.
+
+Use esse instalador tanto para um banco novo quanto para completar um banco
+antigo deste projeto. Ele preserva os dados, cria tabelas ausentes, adiciona a
+coluna `usuarios.ativo` se necessario e inclui produtos de exemplo ausentes pelo
+nome, sem sobrescrever os existentes (inclusive as imagens). Não execute a migration
+`001_adicionar_ativo.sql` novamente se a coluna já existir.
+
+O instalador depende do formato atual do `schema.sql`. Ele não mantém histórico de
+migrations, não sincroniza bancos e não atualiza toda a estrutura de tabelas existentes.
+Se houver erro, parte dos comandos anteriores pode já ter sido aplicada.
+
+O `schema.sql` fica reservado para criar um banco novo manualmente. Para um banco
+existente, use o instalador. Faca uma copia de seguranca antes de atualizar dados.
 
 ## Estrutura do banco
 
