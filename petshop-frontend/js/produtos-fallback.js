@@ -13,7 +13,7 @@ window.PRODUTOS_FALLBACK = [
         "nome": "Bebedouro Fonte Automático 2L",
         "descricao": "Fonte com filtro e circulação contínua de água, que estimula a hidratação dos pets.",
         "preco": 119.9,
-        "imagem": null,
+        "imagem": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRNOc1nApg7Q5ODp7_AS82Mw0D6NtPybYINtNNSrZsYFWoo9R3gCGvxW_vlkQbsk39hqJi5H8BQ8V7hlFZJgSs1WyUIn3yaRA",
         "especie_indicada": "Cães e gatos",
         "categoria": "Acessórios"
     },
@@ -22,7 +22,7 @@ window.PRODUTOS_FALLBACK = [
         "nome": "Caixa de Transporte Nº 3",
         "descricao": "Caixa de transporte rígida com ventilação lateral e porta de grade, para cães e gatos de pequeno e médio porte.",
         "preco": 99.9,
-        "imagem": null,
+        "imagem": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcT-qDOl3BMzXaJyXJFbrTcIaSSrvQc_bAcOidghv8bpA5PbyzC6kdwTXuQozMpnPQWkr0o7Gbf41TNZhdDmk1Y87b4l1pK6egbdLR4bRuBcCa__UDa_KxvVvA",
         "especie_indicada": "Cães e gatos",
         "categoria": "Acessórios"
     },
@@ -48,7 +48,7 @@ window.PRODUTOS_FALLBACK = [
         "id": 9,
         "nome": "Comedouro Duplo Inox",
         "descricao": "Comedouro de aço inoxidável com base antiderrapante, fácil de higienizar.",
-        "preco": 45,
+        "preco": 45.0,
         "imagem": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6_wxremJWE8F2r7skWMBGusGmUzYVGzpW7tPddYkKcg&s=10",
         "especie_indicada": "Cães e gatos",
         "categoria": "Acessórios"
@@ -58,7 +58,7 @@ window.PRODUTOS_FALLBACK = [
         "nome": "Peitoral Ajustável Acolchoado",
         "descricao": "Peitoral com acolchoado macio, fecho rápido e ajuste em três pontos para maior conforto no passeio.",
         "preco": 64.9,
-        "imagem": null,
+        "imagem": "https://http2.mlstatic.com/D_NQ_NP_2X_871985-MLB96168741879_102025-F-coleira-para-cachorros-kit-guia-amortecedor-de-puxoes-pet.webp",
         "especie_indicada": "Cães",
         "categoria": "Acessórios"
     },
@@ -85,7 +85,7 @@ window.PRODUTOS_FALLBACK = [
         "nome": "Frisbee de Borracha Flexível",
         "descricao": "Disco flexível e resistente para brincadeiras ao ar livre com cães.",
         "preco": 29.9,
-        "imagem": null,
+        "imagem": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcTRLLr5vXdTWGqCcof2gQilgzMHV5zh0BSO8Til7ffys4J8525Y3wSza59CAv7uqBHFNk5XFgGMO0WvEZBYjSCCtQRGtb1yFtILb2sONDk&usqp=CAc",
         "especie_indicada": "Cães",
         "categoria": "Brinquedos"
     },
@@ -94,7 +94,7 @@ window.PRODUTOS_FALLBACK = [
         "nome": "Pelúcia com Apito para Cães",
         "descricao": "Pelúcia resistente com apito interno, indicada para cães de pequeno e médio porte.",
         "preco": 26.9,
-        "imagem": null,
+        "imagem": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcSq44uyVQXn_R8AlZuLdxHIKYFFfwb3Rpg046ZSWaDbBb2fU7fwGDOU0LFq1pokxqI06cs8S3es6Td3Cq-0uAJvH6H4Qa17",
         "especie_indicada": "Cães",
         "categoria": "Brinquedos"
     },
@@ -103,7 +103,7 @@ window.PRODUTOS_FALLBACK = [
         "nome": "Ratinho de Pelúcia com Catnip",
         "descricao": "Ratinho macio recheado com catnip para estimular a brincadeira dos gatos.",
         "preco": 12.9,
-        "imagem": null,
+        "imagem": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcSCPRVy-_4DIe09mXVHuGk5WRDcEQwYU1dML0iWY060naZX7XGqN0cyVmtxq-pgsDyKAW1NN8tGXVAbejh5mJBU0P5e9EwtnSCmMnYd2lUH-bYMHUNd8o2s",
         "especie_indicada": "Gatos",
         "categoria": "Brinquedos"
     },
@@ -112,7 +112,7 @@ window.PRODUTOS_FALLBACK = [
         "nome": "Túnel Dobrável para Gatos",
         "descricao": "Túnel com bolinha pendurada que estimula a exploração e dobra para guardar.",
         "preco": 54.9,
-        "imagem": null,
+        "imagem": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQ92N3VwO0yCj0vtPKTNbSyzFIEqpLNxkIWZcVtrMtg98CEp983sRKkWJC5W-GtS82GIStM3J_45ElXyBZTkPWJdhJ1Tu009yYSoh94DdSefe9EuyoMrfuAbIY",
         "especie_indicada": "Gatos",
         "categoria": "Brinquedos"
     },
@@ -175,7 +175,7 @@ window.PRODUTOS_FALLBACK = [
         "nome": "Tapete Higiênico Absorvente 30 unidades",
         "descricao": "Tapetes com gel superabsorvente e controle de odor, ideais para o treino de xixi de cães.",
         "preco": 59.9,
-        "imagem": null,
+        "imagem": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcTT4UQQ_sVL0TdgTL3CNpDKVHznHNACW20iPR0ujLe0fIvvcs4gCzX2pUPeFTzOphqwPL4uIYfgCauNYh5K4XmZcrmD09k2jOpYYyJEDdOOGTrn-VIASiKreAj4",
         "especie_indicada": "Cães",
         "categoria": "Higiene e Banho"
     },
@@ -183,7 +183,7 @@ window.PRODUTOS_FALLBACK = [
         "id": 5,
         "nome": "Toalha de Microfibra Secagem Rápida",
         "descricao": "Toalha de alta absorção para depois do banho, reduz o tempo de secagem.",
-        "preco": 42,
+        "preco": 42.0,
         "imagem": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCUx-u0V2_UVvqhN7ntUNkVxswIUqd74Zy4m0qD9Vvkg&s=10",
         "especie_indicada": "Cães e gatos",
         "categoria": "Higiene e Banho"
@@ -229,7 +229,7 @@ window.PRODUTOS_FALLBACK = [
         "nome": "Snack Cremoso para Gatos 4 unidades",
         "descricao": "Petisco cremoso sabor frango em bisnagas individuais, que ajuda a hidratar e agrada o paladar felino.",
         "preco": 14.9,
-        "imagem": "blob:https://gemini.google.com/00be7c3a-0ff9-4f18-b04c-f0b17da80b60",
+        "imagem": null,
         "especie_indicada": "Gatos",
         "categoria": "Petisco"
     },
@@ -261,15 +261,6 @@ window.PRODUTOS_FALLBACK = [
         "categoria": "Ração"
     },
     {
-        "id": 15,
-        "nome": "Ração para Gatos Castrados 3kg",
-        "descricao": "Fórmula com baixo teor de gordura e minerais controlados, indicada para gatos castrados adultos.",
-        "preco": 84.9,
-        "imagem": "https://images.pexels.com/photos/27130348/pexels-photo-27130348.jpeg?auto=compress&cs=tinysrgb&w=800",
-        "especie_indicada": "Gatos",
-        "categoria": "Ração"
-    },
-    {
         "id": 1,
         "nome": "Ração Premium Cães Adultos 15kg",
         "descricao": "Ração completa para cães adultos de porte médio e grande, com carne e cereais integrais.",
@@ -288,6 +279,15 @@ window.PRODUTOS_FALLBACK = [
         "categoria": "Ração"
     },
     {
+        "id": 15,
+        "nome": "Ração para Gatos Castrados 3kg",
+        "descricao": "Fórmula com baixo teor de gordura e minerais controlados, indicada para gatos castrados adultos.",
+        "preco": 84.9,
+        "imagem": "https://images.pexels.com/photos/27130348/pexels-photo-27130348.jpeg?auto=compress&cs=tinysrgb&w=800",
+        "especie_indicada": "Gatos",
+        "categoria": "Ração"
+    },
+    {
         "id": 10,
         "nome": "Banho e Tosa Completo",
         "descricao": "Serviço de banho, tosa higiênica, corte de unhas e limpeza de ouvidos.",
@@ -300,7 +300,7 @@ window.PRODUTOS_FALLBACK = [
         "id": 36,
         "nome": "Corte de Unhas",
         "descricao": "Corte e lixamento das unhas feitos com cuidado por profissional treinado.",
-        "preco": 25,
+        "preco": 25.0,
         "imagem": null,
         "especie_indicada": "Cães e gatos",
         "categoria": "Serviços"
@@ -309,7 +309,7 @@ window.PRODUTOS_FALLBACK = [
         "id": 37,
         "nome": "Escovação de Dentes",
         "descricao": "Higiene bucal com pasta própria para pets, ajuda a prevenir tártaro e mau hálito.",
-        "preco": 35,
+        "preco": 35.0,
         "imagem": null,
         "especie_indicada": "Cães",
         "categoria": "Serviços"
@@ -327,7 +327,7 @@ window.PRODUTOS_FALLBACK = [
         "id": 38,
         "nome": "Tosa Higiênica",
         "descricao": "Aparo das regiões íntimas, patas e barriga para mais higiene no dia a dia.",
-        "preco": 45,
+        "preco": 45.0,
         "imagem": null,
         "especie_indicada": "Cães e gatos",
         "categoria": "Serviços"

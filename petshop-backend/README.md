@@ -16,7 +16,12 @@
 Para usar desativacao e reativacao sem perder registros, faca um backup e execute
 `php scripts/atualizar_contas.php` nesta pasta, com as credenciais do banco no
 ambiente. O mesmo script funciona em MySQL e MariaDB e pode ser repetido.
-Novas instalacoes usam `sql/schema.sql`, que ja inclui a estrutura atual.
+Novas instalacoes usam `sql/schema.sql`, que ja inclui a estrutura atual e os
+38 produtos. Para atualizar o catalogo de um banco existente, execute
+`php scripts/atualizar_catalogo.php` nesta pasta. Ele sincroniza por nome sem
+alterar IDs nem apagar pedidos, preserva fotos locais em assets/ e regenera
+`produtos-fallback.js` com os IDs reais. Os links externos ainda serao substituidos
+por arquivos locais em uma etapa posterior.
 
 O endpoint antigo de exclusao continua apenas desativando contas. Nao ha exclusao
 definitiva nesta integracao. Pedidos ficam protegidos por `ON DELETE RESTRICT`.
