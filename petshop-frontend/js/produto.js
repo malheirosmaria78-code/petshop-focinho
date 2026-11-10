@@ -14,16 +14,16 @@ async function carregarProduto() {
   }
 
   try {
-    const resposta = await fetch(`${API_BASE}/produtos.php?id=${encodeURIComponent(idProduto)}`, { credentials: 'include' });
-    const dados = await resposta.json();
+    const resultado = await buscarProdutoPorId(idProduto);
 
-    if (!resposta.ok || !dados.sucesso) {
-      throw new Error('Produto não encontrado');
-    }
-
-    produtoCarregado = dados.produto;
-    document.getElementById('produto-imagem').src = produtoCarregado.imagem;
-    document.getElementById('produto-imagem').alt = produtoCarregado.nome;
+    produtoCarregado = resultado.produto;
+    const imagemProduto = document.getElementById('produto-imagem');
+    imagemProduto.onerror = () => {
+      imagemProduto.onerror = null;
+      imagemProduto.src = IMAGEM_PADRAO;
+    };
+    imagemProduto.src = urlImagemProduto(produtoCarregado.imagem);
+    imagemProduto.alt = produtoCarregado.nome;
     document.getElementById('produto-especie').textContent = produtoCarregado.especie_indicada;
     document.getElementById('produto-nome').textContent = produtoCarregado.nome;
     document.getElementById('produto-preco').textContent = formatarPreco(produtoCarregado.preco);

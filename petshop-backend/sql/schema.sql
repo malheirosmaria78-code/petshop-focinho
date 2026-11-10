@@ -25,6 +25,7 @@ CREATE TABLE usuarios (
     resposta_cep CHAR(8) NOT NULL,
     perfil ENUM('master', 'comum') NOT NULL DEFAULT 'comum',
     ativo TINYINT(1) NOT NULL DEFAULT 1,
+    desativado_em DATETIME NULL,
     criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -77,7 +78,7 @@ CREATE TABLE pedidos (
     forma_pagamento ENUM('credito', 'debito', 'pix') NOT NULL,
     cartao_final CHAR(4) NULL,
     criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE RESTRICT
 );
 
 CREATE TABLE itens_pedido (

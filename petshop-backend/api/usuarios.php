@@ -12,22 +12,33 @@ if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
 }
 
 $busca = trim($_GET['busca'] ?? '');
+$status = $_GET['status'] ?? 'todos'; // todos | ativos | desativados
 
-$pdo = conectarBanco();
+$sql = "SELECT u.id, u.nome_completo, u.cpf, u.email, u.login, u.criado_em, u.ativo, u.desativado_em,
+               (SELECT COUNT(*) FROM pedidos p WHERE p.usuario_id = u.id) AS total_pedidos
+        FROM usuarios u
+        WHERE u.perfil = 'comum'";
+$parametros = [];
 
 if ($busca !== '') {
-    $consulta = $pdo->prepare(
-        "SELECT id, nome_completo, cpf, email, login, criado_em FROM usuarios
-         WHERE perfil = 'comum' AND ativo = 1 AND nome_completo LIKE ?
-         ORDER BY nome_completo"
-    );
-    $consulta->execute(['%' . $busca . '%']);
-} else {
-    $consulta = $pdo->query(
-        "SELECT id, nome_completo, cpf, email, login, criado_em FROM usuarios
-         WHERE perfil = 'comum' AND ativo = 1
-         ORDER BY nome_completo"
-    );
+    $sql .= ' AND u.nome_completo LIKE ?';
+    $parametros[] = '%' . $busca . '%';
+}
+if ($status === 'ativos') {
+    $sql .= ' AND u.ativo = 1';
+} elseif ($status === 'desativados') {
+    $sql .= ' AND u.ativo = 0';
+}
+$sql .= ' ORDER BY u.nome_completo';
+
+try {
+    $consulta = conectarBanco()->prepare($sql);
+    $consulta->execute($parametros);
+} catch (PDOException $e) {
+    responderJson([
+        'sucesso' => false,
+        'mensagem' => 'Banco desatualizado: execute o script scripts/atualizar_contas.php pelo terminal.',
+    ], 500);
 }
 
 responderJson(['sucesso' => true, 'usuarios' => $consulta->fetchAll()]);

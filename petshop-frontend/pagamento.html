@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/estilo.css">
+<link rel="stylesheet" href="css/pix.css">
 </head>
 <body data-pagina="index.html">
 
@@ -103,8 +104,41 @@
           </form>
         </div>
 
-        <div id="area-pix" hidden>
-          <p style="color: var(--tinta-suave);">Ao confirmar, geraremos um código Pix simulado para pagamento.</p>
+        <div id="area-pix" hidden data-validade="600" data-confirmacao="15">
+          <div class="pix-painel" data-estado="aguardando">
+            <div class="pix-topo">
+              <p class="pix-titulo">Pague com Pix</p>
+              <div class="pix-tempo" role="timer" aria-label="Tempo restante para pagar">
+                <span>Expira em</span>
+                <span class="pix-tempo-valor" id="pix-tempo-valor">10:00</span>
+              </div>
+            </div>
+
+            <div class="pix-corpo">
+              <div class="pix-qr" id="pix-qr"></div>
+
+              <div class="pix-detalhes">
+                <p class="pix-valor-linha">Valor a pagar <strong id="pix-valor"></strong></p>
+                <ol class="pix-passos">
+                  <li>Abra o aplicativo do seu banco e escolha pagar com Pix.</li>
+                  <li>Aponte a câmera para o QR Code ou use o Pix copia e cola.</li>
+                  <li>Confira o valor e confirme. A nota fiscal aparece sozinha.</li>
+                </ol>
+
+                <label for="pix-codigo">Pix copia e cola</label>
+                <div class="pix-copia">
+                  <input type="text" id="pix-codigo" readonly>
+                  <button type="button" id="pix-copiar">Copiar código</button>
+                </div>
+
+                <p class="pix-status" id="pix-status" role="status">Aguardando o pagamento...</p>
+                <button type="button" class="pix-novo" id="pix-novo" hidden>Gerar novo código</button>
+              </div>
+            </div>
+
+            <div class="pix-barra"><span id="pix-barra-preenchimento"></span></div>
+            <p class="pix-aviso">Código de demonstração: nenhuma cobrança real é gerada.</p>
+          </div>
         </div>
 
         <button type="button" class="botao-primario" id="botao-confirmar-pagamento" style="width: 100%; margin-top: 1rem;">Confirmar pagamento</button>
@@ -151,5 +185,7 @@
 
 <script src="js/comum.js"></script>
 <script src="js/pagamento.js"></script>
+<script src="js/qrcode.js"></script>
+<script src="js/pix.js"></script>
 </body>
 </html>

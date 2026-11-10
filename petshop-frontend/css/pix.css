@@ -1,0 +1,235 @@
+.pix-painel {
+  border: 1px solid var(--linha);
+  border-radius: 14px;
+  background: var(--bg);
+  padding: 1.3rem;
+  margin-bottom: 0.4rem;
+}
+
+.pix-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.1rem;
+}
+
+.pix-titulo {
+  margin: 0;
+  font-family: var(--fonte-titulo);
+  font-weight: 500;
+  font-size: 1.15rem;
+  color: var(--pinho);
+}
+
+.pix-tempo {
+  display: flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  background: #223327;
+  color: #F6F1E4;
+  font-size: 0.8rem;
+  transition: background 0.3s ease;
+}
+
+.pix-tempo-valor {
+  font-size: 1.1rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.pix-painel.urgente .pix-tempo {
+  background: #B9632E;
+}
+
+.pix-corpo {
+  display: grid;
+  grid-template-columns: 210px 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.pix-qr {
+  position: relative;
+  width: 210px;
+  height: 210px;
+  padding: 6px;
+  border: 1px solid var(--linha);
+  border-radius: 12px;
+  background: #FFFFFF;
+  transition: opacity 0.3s ease;
+}
+
+.pix-qr svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.pix-painel[data-estado="expirado"] .pix-qr,
+.pix-painel[data-estado="falha"] .pix-qr {
+  opacity: 0.18;
+}
+
+.pix-painel[data-estado="confirmado"] .pix-qr {
+  opacity: 0.35;
+}
+
+.pix-valor-linha {
+  margin: 0 0 0.9rem;
+  font-size: 0.92rem;
+  color: var(--tinta-suave);
+}
+
+.pix-valor-linha strong {
+  font-size: 1.25rem;
+  color: var(--tinta);
+}
+
+.pix-passos {
+  margin: 0 0 1rem;
+  padding-left: 1.1rem;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--tinta-suave);
+}
+
+.pix-detalhes label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--tinta);
+}
+
+.pix-copia {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.pix-copia input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--linha);
+  border-radius: 8px;
+  background: var(--superficie);
+  color: var(--tinta);
+  font-family: 'Courier New', monospace;
+  font-size: 0.78rem;
+  text-overflow: ellipsis;
+}
+
+.pix-copia button,
+.pix-novo {
+  flex: none;
+  padding: 0.6rem 1.1rem;
+  border: 1px solid var(--pinho);
+  border-radius: 8px;
+  background: var(--pinho);
+  color: #FFFFFF;
+  font-size: 0.86rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.pix-copia button:hover,
+.pix-novo:hover {
+  background: var(--pinho-escuro);
+}
+
+.pix-novo {
+  margin-top: 0.8rem;
+}
+
+.pix-status {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 1rem 0 0;
+  font-size: 0.9rem;
+  color: var(--tinta);
+}
+
+.pix-status::before {
+  content: "";
+  flex: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #E3AC49;
+  animation: pix-pulso 1.4s ease-in-out infinite;
+}
+
+.pix-painel[data-estado="confirmado"] .pix-status::before {
+  background: #35503F;
+  animation: none;
+}
+
+.pix-painel[data-estado="expirado"] .pix-status::before,
+.pix-painel[data-estado="falha"] .pix-status::before {
+  background: #B9632E;
+  animation: none;
+}
+
+.pix-barra {
+  height: 5px;
+  margin-top: 1.2rem;
+  border-radius: 999px;
+  background: var(--linha);
+  overflow: hidden;
+}
+
+.pix-barra span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--pinho);
+  transition: width 0.25s linear, background 0.3s ease;
+}
+
+.pix-painel.urgente .pix-barra span {
+  background: var(--ferrugem);
+}
+
+.pix-aviso {
+  margin: 0.9rem 0 0;
+  font-size: 0.78rem;
+  color: var(--tinta-suave);
+}
+
+@keyframes pix-pulso {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.35; transform: scale(0.8); }
+}
+
+@media (max-width: 640px) {
+  .pix-corpo {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .pix-detalhes {
+    width: 100%;
+  }
+
+  .pix-copia {
+    flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pix-status::before {
+    animation: none;
+  }
+
+  .pix-barra span,
+  .pix-tempo,
+  .pix-qr {
+    transition: none;
+  }
+}

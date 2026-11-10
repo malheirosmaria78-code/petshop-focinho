@@ -17,12 +17,20 @@ if (empty($dados['login']) || empty($dados['senha'])) {
 
 $pdo = conectarBanco();
 
-$consulta = $pdo->prepare('SELECT * FROM usuarios WHERE login = ? AND ativo = 1');
+$consulta = $pdo->prepare('SELECT * FROM usuarios WHERE login = ?');
 $consulta->execute([$dados['login']]);
 $usuario = $consulta->fetch();
 
 if (!$usuario || !password_verify($dados['senha'], $usuario['senha_hash'])) {
     responderJson(['sucesso' => false, 'mensagem' => 'Login ou senha inválidos'], 401);
+}
+
+if ((int) ($usuario['ativo'] ?? 1) !== 1) {
+    responderJson([
+        'sucesso' => false,
+        'desativada' => true,
+        'mensagem' => 'Esta conta está desativada. Entre em contato com a loja para reativá-la.',
+    ], 403);
 }
 
 $perguntas = ['nome_mae', 'data_nascimento', 'cep'];

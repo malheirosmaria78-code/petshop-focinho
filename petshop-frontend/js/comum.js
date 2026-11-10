@@ -1,7 +1,113 @@
-// Resolve a API a partir deste script, preservando a pasta e a porta do projeto.
+// Mesmo servidor e caminho do projeto no Linux, XAMPP ou acesso pela rede.
 const API_BASE = new URL('../../petshop-backend/api', document.currentScript.src).href;
 
 const CHAVE_CARRINHO = 'carrinho';
+const CHAVE_CACHE_PRODUTOS = 'cacheProdutos';
+const CHAVE_ASSINATURA_CACHE = 'cacheProdutosAssinatura';
+const TEMPO_LIMITE_API = 4000;
+
+const IMAGEM_PADRAO = 'data:image/svg+xml;utf8,' + encodeURIComponent(
+  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">' +
+  '<rect width="400" height="300" fill="#EAE2D0"/>' +
+  '<g fill="#B9632E" opacity="0.55">' +
+  '<ellipse cx="200" cy="168" rx="42" ry="34"/>' +
+  '<ellipse cx="144" cy="120" rx="17" ry="22" transform="rotate(-18 144 120)"/>' +
+  '<ellipse cx="184" cy="96" rx="17" ry="23"/>' +
+  '<ellipse cx="226" cy="96" rx="17" ry="23"/>' +
+  '<ellipse cx="266" cy="120" rx="17" ry="22" transform="rotate(18 266 120)"/>' +
+  '</g>' +
+  '<text x="200" y="250" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#6B6558">Foto em breve</text>' +
+  '</svg>'
+);
+
+function urlImagemProduto(imagem) {
+  return imagem && String(imagem).trim() !== '' ? imagem : IMAGEM_PADRAO;
+}
+function assinaturaFallback() {
+  const lista = Array.isArray(window.PRODUTOS_FALLBACK) ? window.PRODUTOS_FALLBACK : [];
+  const texto = JSON.stringify(lista);
+  let hash = 5381;
+  for (let i = 0; i < texto.length; i++) {
+    hash = ((hash << 5) + hash + texto.charCodeAt(i)) | 0;
+  }
+  return `${hash}:${lista.length}`;
+}
+
+function lerCacheProdutos() {
+  try {
+    if (localStorage.getItem(CHAVE_ASSINATURA_CACHE) !== assinaturaFallback()) return null;
+    const lista = JSON.parse(localStorage.getItem(CHAVE_CACHE_PRODUTOS));
+    return Array.isArray(lista) && lista.length > 0 ? lista : null;
+  } catch (falha) {
+    return null;
+  }
+}
+
+function salvarCacheProdutos(lista) {
+  try {
+    localStorage.setItem(CHAVE_CACHE_PRODUTOS, JSON.stringify(lista));
+    localStorage.setItem(CHAVE_ASSINATURA_CACHE, assinaturaFallback());
+  } catch (falha) {
+    return;
+  }
+}
+
+function listaLocalDeProdutos() {
+  const cache = lerCacheProdutos();
+  if (cache) return { produtos: cache, origem: 'cache' };
+  if (Array.isArray(window.PRODUTOS_FALLBACK) && window.PRODUTOS_FALLBACK.length > 0) {
+    return { produtos: window.PRODUTOS_FALLBACK, origem: 'local' };
+  }
+  return null;
+}
+
+async function requisitarComLimite(url) {
+  const controle = new AbortController();
+  const temporizador = window.setTimeout(() => controle.abort(), TEMPO_LIMITE_API);
+  try {
+    return await fetch(url, { credentials: 'include', signal: controle.signal, cache: 'no-store' });
+  } finally {
+    window.clearTimeout(temporizador);
+  }
+}
+
+async function buscarProdutos() {
+  try {
+    const resposta = await requisitarComLimite(`${API_BASE}/produtos.php`);
+    const dados = await resposta.json();
+    if (!resposta.ok || !dados.sucesso || !Array.isArray(dados.produtos)) {
+      throw new Error('Resposta inválida do servidor');
+    }
+    salvarCacheProdutos(dados.produtos);
+    return { produtos: dados.produtos, origem: 'servidor' };
+  } catch (falha) {
+    const local = listaLocalDeProdutos();
+    if (local) return local;
+    throw falha;
+  }
+}
+
+async function buscarProdutoPorId(id) {
+  try {
+    const resposta = await requisitarComLimite(`${API_BASE}/produtos.php?id=${encodeURIComponent(id)}`);
+    if (resposta.status === 404) {
+      const naoEncontrado = new Error('Produto não encontrado');
+      naoEncontrado.naoEncontrado = true;
+      throw naoEncontrado;
+    }
+    const dados = await resposta.json();
+    if (!resposta.ok || !dados.sucesso || !dados.produto) {
+      throw new Error('Resposta inválida do servidor');
+    }
+    return { produto: dados.produto, origem: 'servidor' };
+  } catch (falha) {
+    if (falha.naoEncontrado) throw falha;
+    const local = listaLocalDeProdutos();
+    const produto = local && local.produtos.find((item) => Number(item.id) === Number(id));
+    if (produto) return { produto, origem: local.origem };
+    throw falha;
+  }
+}
 
 function obterCarrinho() {
   try {
@@ -91,6 +197,12 @@ function mostrarAviso(texto) {
   }, 2800);
 }
 
+function escaparHtml(texto) {
+  return String(texto ?? '').replace(/[&<>"']/g, (c) => (
+    { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
+  ));
+}
+
 function formatarPreco(valor) {
   return Number(valor).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 }
@@ -100,17 +212,38 @@ function formatarDataHora(valor) {
   return data.toLocaleString('pt-BR');
 }
 
+function montarMenu(usuario) {
+  const menu = document.getElementById('menu');
+  if (!menu) return;
+
+  const links = [['index.html', 'Loja'], ['sobre-nos.html', 'Sobre nós'], ['faq.html', 'FAQ']];
+  if (usuario) {
+    if (usuario.perfil === 'master') {
+      links.push(['consulta-usuario.html', 'Usuários'], ['log.html', 'Log']);
+    } else {
+      links.push(['minha-conta.html', 'Minha conta']);
+    }
+    links.push(['modelo-bd.html', 'Modelo do BD']);
+  }
+
+  menu.classList.toggle('menu-longo', links.length > 4);
+
+  const paginaAtual = document.body.dataset.pagina;
+  menu.innerHTML = links
+    .map(([href, rotulo]) => `<a href="${href}" class="menu-link${href === paginaAtual ? ' ativo' : ''}">${rotulo}</a>`)
+    .join('');
+}
+
 function renderizarAreaConta(usuario) {
   const area = document.getElementById('area-conta');
-  const menu = document.getElementById('menu');
-  if (!area || !menu) return;
+  if (!area || !document.getElementById('menu')) return;
 
   if (!usuario) {
     area.innerHTML = `
       <a class="conta-link" href="login.html">Entrar</a>
       <a class="conta-link" href="cadastro.html">Cadastrar</a>
     `;
-    menu.innerHTML = '<a href="index.html" class="menu-link">Loja</a>';
+    montarMenu(null);
     return;
   }
 
@@ -120,29 +253,14 @@ function renderizarAreaConta(usuario) {
       <button type="button" class="conta-sair" id="botao-sair">Sair</button>
     </div>
   `;
-
-  const linksMenu = ['<a href="index.html" class="menu-link">Loja</a>'];
-  if (usuario.perfil === '') {
-    linksMenu.push('<a href="consulta-usuario.html" class="menu-link">Usuários</a>');
-    linksMenu.push('<a href="log.html" class="menu-link">Log</a>');
-  } else {
-    linksMenu.push('<a href="minha-conta.html" class="menu-link">Minha conta</a>');
-  }
-  linksMenu.push('<a href="modelo-bd.html" class="menu-link">Modelo do BD</a>');
-  menu.innerHTML = linksMenu.join('');
-
-  const paginaAtual = document.body.dataset.pagina;
-  menu.querySelectorAll('a').forEach((link) => {
-    if (link.getAttribute('href') === paginaAtual) {
-      link.classList.add('ativo');
-    }
-  });
+  montarMenu(usuario);
 
   document.getElementById('botao-sair').addEventListener('click', async () => {
     try {
       await fetch(`${API_BASE}/logout.php`, { method: 'POST', credentials: 'include' });
     } catch (falha) {
-      /* segue o fluxo mesmo se a chamada falhar */
+      window.location.href = 'index.html';
+      return;
     }
     window.location.href = 'index.html';
   });
@@ -152,6 +270,14 @@ async function carregarSessao() {
   try {
     const resposta = await fetch(`${API_BASE}/perfil.php`, { credentials: 'include' });
     if (!resposta.ok) {
+      try {
+        const falha = await resposta.json();
+        if (falha.expirada || falha.sessao_encerrada) {
+          sessionStorage.setItem('avisoSessao', falha.mensagem);
+          mostrarAviso(falha.mensagem);
+        }
+      } catch (erroLeitura) {
+      }
       renderizarAreaConta(null);
       return null;
     }

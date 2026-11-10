@@ -9,6 +9,8 @@ if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
     responderJson(['sucesso' => false, 'mensagem' => 'Método não permitido'], 405);
 }
 
+header('Cache-Control: no-store');
+
 $pdo = conectarBanco();
 
 if (!empty($_GET['id'])) {

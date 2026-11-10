@@ -33,6 +33,11 @@ function renderizarResumoPagamento() {
   document.getElementById('pagamento-total').textContent = formatarPreco(subtotal + entrega);
 }
 
+function totalDoPedidoAtual() {
+  const subtotal = calcularTotalCarrinho(carrinhoAtual);
+  return subtotal + (subtotal >= FRETE_GRATIS_ACIMA_DE_PAG ? 0 : CUSTO_ENTREGA_PAG);
+}
+
 renderizarResumoPagamento();
 
 document.querySelectorAll('input[name="metodo"]').forEach((radio) => {
@@ -119,6 +124,7 @@ document.getElementById('botao-confirmar-pagamento').addEventListener('click', a
     if (!resposta.ok || !dados.sucesso) {
       erroGeral.textContent = dados.mensagem || 'Não foi possível concluir o pagamento.';
       erroGeral.classList.add('mostrar');
+      document.dispatchEvent(new CustomEvent('pagamento:falha'));
       return;
     }
 

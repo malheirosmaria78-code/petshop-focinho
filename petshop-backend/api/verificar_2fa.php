@@ -30,6 +30,11 @@ if (!$usuario) {
     responderJson(['sucesso' => false, 'mensagem' => 'Usuário não encontrado'], 404);
 }
 
+if ((int) $usuario['ativo'] !== 1) {
+    encerrarSessao();
+    responderJson(['sucesso' => false, 'mensagem' => 'Esta conta está desativada'], 403);
+}
+
 $pergunta = $_SESSION['pergunta_2fa'];
 $colunas = [
     'nome_mae' => 'resposta_nome_mae',
@@ -48,6 +53,7 @@ $registroLog->execute([$usuario['id'], $usuario['nome_completo'], $usuario['cpf'
 
 if ($acertou) {
     $_SESSION['autenticado_completo'] = true;
+    $_SESSION['ultima_atividade'] = time();
     unset($_SESSION['pergunta_2fa'], $_SESSION['tentativas_2fa']);
     responderJson([
         'sucesso' => true,
