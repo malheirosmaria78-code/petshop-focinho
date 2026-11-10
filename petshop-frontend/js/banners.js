@@ -2,6 +2,17 @@
   const raiz = document.querySelector('[data-banners]');
   if (!raiz) return;
 
+  raiz.querySelectorAll('.banner-foto img').forEach((imagem) => {
+    const mostrarPadrao = () => {
+      imagem.onerror = null;
+      imagem.alt = 'Foto em breve';
+      imagem.src = IMAGEM_PADRAO;
+    };
+    imagem.onerror = mostrarPadrao;
+    // A imagem pode ter falhado antes de o script terminar de carregar.
+    if (imagem.complete && imagem.naturalWidth === 0) mostrarPadrao();
+  });
+
   const slides = Array.from(raiz.querySelectorAll('.banner-slide'));
   const pontos = Array.from(raiz.querySelectorAll('.banner-ponto'));
   const botaoAnterior = raiz.querySelector('.banner-seta-anterior');
@@ -91,12 +102,6 @@
     } else {
       iniciar();
     }
-  });
-
-  raiz.querySelectorAll('.banner-foto img').forEach((imagem) => {
-    imagem.addEventListener('error', () => {
-      imagem.style.display = 'none';
-    });
   });
 
   exibir(0);

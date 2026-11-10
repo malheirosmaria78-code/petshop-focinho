@@ -32,13 +32,13 @@ usuarios com pedidos. Pode ser repetido. Nao apaga registros e nao importa o dum
 Nao completa tabelas de um banco parcial: requer as tabelas usuarios e pedidos.
 
 O schema.sql agora inclui todos os 38 produtos do catalogo recebido, com os
-links disponiveis na exportacao. O endereco blob invalido e tratado como foto
-ausente. Para um banco existente, execute `php petshop-backend/scripts/atualizar_catalogo.php`
+caminhos locais esperados para as fotos. Os links externos e o endereco blob
+foram removidos dos dados distribuidos. Para um banco existente, execute `php petshop-backend/scripts/atualizar_catalogo.php`
 na raiz, com as credenciais no ambiente. O script usa os dados do schema,
 sincroniza por nome preservando IDs, usuarios, pedidos e produtos extras, e
 regenera a copia offline com os IDs reais do banco. Pode ser repetido. Fotos ja
-salvas com caminhos assets/ sao preservadas. A troca dos links por arquivos de
-imagem locais e a obtencao das fotos ausentes continuam para a ultima etapa.
+salvas com caminhos assets/ sao preservadas. Os caminhos locais estao prontos; obter e adicionar os arquivos das fotos
+continua pendente.
 
 ## Ordem de conclusao
 
@@ -49,9 +49,12 @@ imagem locais e a obtencao das fotos ausentes continuam para a ultima etapa.
 - [ ] Validar layout em tela de celular.
 - [x] Primeiro commit de integracao enviado para a branch de feature.
 - [x] Consolidar os 38 produtos no schema e testar o atualizador do catalogo.
-- [ ] **Por ultimo: imagens.** Substituir o blob temporario, obter fotos ausentes,
-      salvar arquivos em assets/produtos, consolidar caminhos do catalogo no SQL
-      e regenerar produtos-fallback.js. Nao substituir links nesta primeira etapa.
+- [x] Preparar o esqueleto das imagens: pasta, nomes esperados e caminhos locais
+      no schema e na copia offline; placeholder enquanto os arquivos nao existem.
+- [ ] Adicionar as fotos reais nas pastas assets/produtos e assets/banners.
+- [ ] **Lembrete para depois: atualizar o catalogo do banco real.** O usuario
+      pediu para nao atualizar agora. Usar scripts/atualizar_catalogo.php quando
+      retomar essa etapa; ele tambem regenera a copia offline.
 
 O Pix e apenas demonstrativo: a confirmacao automatica nao comprova pagamento.
 
@@ -86,3 +89,17 @@ atualizacao de 14 para 38 produtos preservando um produto extra; segunda execuca
 sem duplicacao; IDs, usuarios, pedidos e itens preservados; foto local existente
 preservada; copia offline regenerada com os IDs reais. Todos passaram. Nenhuma
 atualizacao de catalogo foi executada no banco real nesta etapa.
+
+## Esqueleto das imagens (sem fotos por enquanto)
+
+Os 38 produtos ja apontam para assets/produtos/<nome-do-produto>.jpg, com nomes
+em minusculas, sem acentos e separados por hifen. A lista completa esta em
+petshop-frontend/assets/produtos/README.md. Os dois banners tambem possuem nomes
+esperados em assets/banners/README.md. Nenhuma foto foi baixada nem criada.
+Enquanto os arquivos nao existem, a interface usa Foto em breve.
+
+Validado: 38 caminhos unicos, consistentes entre schema, fallback e instrucoes;
+JavaScript sem erros de sintaxe; banners com imagem ausente usam o placeholder
+mesmo quando o erro ocorre antes do carregamento do script, sem ocultar a imagem.
+O banco real ainda guarda seus valores anteriores e nao foi atualizado nesta
+etapa; ele pode continuar entregando os links antigos ate a sincronizacao.

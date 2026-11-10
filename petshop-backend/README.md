@@ -20,8 +20,8 @@ Novas instalacoes usam `sql/schema.sql`, que ja inclui a estrutura atual e os
 38 produtos. Para atualizar o catalogo de um banco existente, execute
 `php scripts/atualizar_catalogo.php` nesta pasta. Ele sincroniza por nome sem
 alterar IDs nem apagar pedidos, preserva fotos locais em assets/ e regenera
-`produtos-fallback.js` com os IDs reais. Os links externos ainda serao substituidos
-por arquivos locais em uma etapa posterior.
+`produtos-fallback.js` com os IDs reais. Os caminhos locais das fotos ja estao preparados. Os arquivos ainda precisam
+ser adicionados conforme o README em petshop-frontend/assets/produtos.
 
 O endpoint antigo de exclusao continua apenas desativando contas. Nao ha exclusao
 definitiva nesta integracao. Pedidos ficam protegidos por `ON DELETE RESTRICT`.
