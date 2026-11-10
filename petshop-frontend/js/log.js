@@ -23,11 +23,11 @@ function renderizarLog(registros) {
       ? '<span class="badge badge-sucesso">Sucesso</span>'
       : '<span class="badge badge-falha">Falha</span>';
     linha.innerHTML = `
-      <td>${formatarDataHora(registro.data_hora)}</td>
-      <td>${registro.nome}</td>
-      <td>${registro.cpf}</td>
-      <td>${rotulosPergunta[registro.pergunta_2fa] || registro.pergunta_2fa}</td>
-      <td>${badge}</td>
+      <td data-label="Data e hora">${formatarDataHora(registro.data_hora)}</td>
+      <td data-label="Nome">${escaparHtml(registro.nome)}</td>
+      <td data-label="CPF">${escaparHtml(registro.cpf)}</td>
+      <td data-label="Pergunta do 2FA">${rotulosPergunta[registro.pergunta_2fa] || escaparHtml(registro.pergunta_2fa)}</td>
+      <td data-label="Resultado">${badge}</td>
     `;
     corpo.appendChild(linha);
   });

@@ -30,7 +30,7 @@ function renderizarCarrinhoPagina() {
     const linha = document.createElement('div');
     linha.className = 'carrinho-item';
     linha.innerHTML = `
-      <img src="${item.imagem}" alt="${item.nome}">
+      <img src="${urlImagemProduto(item.imagem)}" alt="${item.nome}" onerror="this.onerror=null;this.src=IMAGEM_PADRAO">
       <div>
         <p class="carrinho-item-nome">${item.nome}</p>
         <p class="carrinho-item-preco">${formatarPreco(item.preco)} cada</p>

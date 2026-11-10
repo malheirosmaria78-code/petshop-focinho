@@ -1,0 +1,264 @@
+.banners {
+  max-width: 1120px;
+  margin: 1.6rem auto 0;
+  padding: 0 1.5rem;
+}
+
+.banners-quadro {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid var(--linha);
+  background: #223327;
+}
+
+.banners-trilho {
+  display: grid;
+}
+
+.banner-slide {
+  grid-area: 1 / 1;
+  display: grid;
+  grid-template-columns: 1.08fr 0.92fr;
+  min-height: clamp(250px, 31vw, 360px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.9s ease, visibility 0s linear 0.9s;
+}
+
+.banner-slide.ativo {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.9s ease, visibility 0s linear 0s;
+}
+
+.banner-slide.tema-pinho {
+  background: #223327;
+}
+
+.banner-slide.tema-ferrugem {
+  background: #8C481D;
+}
+
+.banner-texto {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0.7rem;
+  padding: 2.4rem 1.5rem 3.2rem 3rem;
+  color: #F6F1E4;
+}
+
+.banner-eyebrow {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #E3AC49;
+}
+
+.banner-titulo {
+  margin: 0;
+  font-family: var(--fonte-titulo);
+  font-weight: 500;
+  font-size: clamp(1.45rem, 2.9vw, 2.15rem);
+  line-height: 1.2;
+}
+
+.banner-descricao {
+  margin: 0;
+  max-width: 34ch;
+  font-size: 0.98rem;
+  line-height: 1.55;
+  color: #E7E0D0;
+}
+
+.banner-botao {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.6rem 1.4rem;
+  border-radius: 999px;
+  background: #F6F1E4;
+  color: #223327;
+  font-size: 0.92rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.tema-ferrugem .banner-botao {
+  color: #6F3714;
+}
+
+.banner-botao:hover {
+  background: #E3AC49;
+  transform: translateY(-1px);
+}
+
+.banner-foto {
+  position: relative;
+  overflow: hidden;
+}
+
+.banner-foto img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
+  display: block;
+}
+
+.banner-foto::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 90px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.tema-pinho .banner-foto::before {
+  background: linear-gradient(90deg, #223327, rgba(34, 51, 39, 0));
+}
+
+.tema-ferrugem .banner-foto::before {
+  background: linear-gradient(90deg, #8C481D, rgba(140, 72, 29, 0));
+}
+
+.banner-seta {
+  position: absolute;
+  top: 50%;
+  z-index: 3;
+  width: 40px;
+  height: 40px;
+  margin-top: -20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: rgba(246, 241, 228, 0.88);
+  color: #223327;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.banner-seta:hover {
+  background: #F6F1E4;
+}
+
+.banner-seta-anterior {
+  left: 0.9rem;
+}
+
+.banner-seta-proximo {
+  right: 0.9rem;
+}
+
+.banner-pontos {
+  position: absolute;
+  left: 3rem;
+  bottom: 1.1rem;
+  z-index: 3;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.banner-ponto {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border: none;
+  border-radius: 999px;
+  background: rgba(246, 241, 228, 0.45);
+  cursor: pointer;
+  transition: width 0.3s ease, background 0.3s ease;
+}
+
+.banner-ponto.ativo {
+  width: 28px;
+  background: #F6F1E4;
+}
+
+.banner-seta:focus-visible,
+.banner-ponto:focus-visible,
+.banner-botao:focus-visible {
+  outline: 2px solid #E3AC49;
+  outline-offset: 3px;
+}
+
+@media (max-width: 760px) {
+  .banners {
+    margin-top: 1.1rem;
+    padding: 0 1rem;
+  }
+
+  .banner-slide {
+    grid-template-columns: 1fr;
+    grid-template-rows: 170px auto;
+    min-height: 0;
+  }
+
+  .banner-foto {
+    grid-row: 1;
+  }
+
+  .banner-foto::before {
+    inset: auto 0 0 0;
+    width: auto;
+    height: 70px;
+  }
+
+  .tema-pinho .banner-foto::before {
+    background: linear-gradient(0deg, #223327, rgba(34, 51, 39, 0));
+  }
+
+  .tema-ferrugem .banner-foto::before {
+    background: linear-gradient(0deg, #8C481D, rgba(140, 72, 29, 0));
+  }
+
+  .banner-texto {
+    grid-row: 2;
+    padding: 0.4rem 1.3rem 3.1rem;
+  }
+
+  .banner-descricao {
+    max-width: none;
+    font-size: 0.92rem;
+  }
+
+  .banner-pontos {
+    left: 1.3rem;
+    bottom: 1rem;
+  }
+
+  .banner-seta {
+    top: 85px;
+    width: 34px;
+    height: 34px;
+    margin-top: -17px;
+  }
+
+  .banner-seta-anterior {
+    left: 0.6rem;
+  }
+
+  .banner-seta-proximo {
+    right: 0.6rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .banner-slide,
+  .banner-slide.ativo {
+    transition: none;
+  }
+
+  .banner-botao,
+  .banner-ponto {
+    transition: none;
+  }
+}

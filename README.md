@@ -132,3 +132,8 @@ O objetivo principal do projeto é praticar a integração entre frontend, backe
 ## Status
 
 O projeto ainda está em desenvolvimento e algumas partes podem sofrer alterações ou melhorias.
+
+## Integracao da versao recebida em ZIP
+
+Consulte [INTEGRACAO.md](INTEGRACAO.md) para as decisoes, atualizacao do banco
+e pendencias. As imagens serao consolidadas na ultima etapa.

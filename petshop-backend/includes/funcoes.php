@@ -1,5 +1,9 @@
 <?php
 
+require_once __DIR__ . '/../config/database.php';
+
+const TEMPO_INATIVIDADE_SEGUNDOS = 1800;
+
 function responderJson(array $dados, int $status = 200): void {
     http_response_code($status);
     header('Content-Type: application/json; charset=utf-8');
@@ -53,6 +57,7 @@ function validarNome(string $nome): bool {
 
 function iniciarSessaoSegura(): void {
     if (session_status() === PHP_SESSION_NONE) {
+        ini_set('session.gc_maxlifetime', (string) (TEMPO_INATIVIDADE_SEGUNDOS * 2));
         session_set_cookie_params([
             'httponly' => true,
             'samesite' => 'Lax',
@@ -61,11 +66,48 @@ function iniciarSessaoSegura(): void {
     }
 }
 
+function encerrarSessao(): void {
+    $_SESSION = [];
+    if (ini_get('session.use_cookies')) {
+        $c = session_get_cookie_params();
+        setcookie(session_name(), '', time() - 42000, $c['path'], $c['domain'], $c['secure'], $c['httponly']);
+    }
+    session_destroy();
+}
+
 function exigirAutenticacao(): array {
     iniciarSessaoSegura();
     if (empty($_SESSION['usuario_id']) || empty($_SESSION['autenticado_completo'])) {
         responderJson(['sucesso' => false, 'mensagem' => 'Sessão não autenticada'], 401);
     }
+
+    $agora = time();
+    if (isset($_SESSION['ultima_atividade']) && ($agora - $_SESSION['ultima_atividade']) > TEMPO_INATIVIDADE_SEGUNDOS) {
+        encerrarSessao();
+        responderJson([
+            'sucesso' => false,
+            'expirada' => true,
+            'mensagem' => 'Sua sessão expirou por inatividade. Entre novamente.',
+        ], 401);
+    }
+
+    try {
+        $consulta = conectarBanco()->prepare('SELECT ativo FROM usuarios WHERE id = ?');
+        $consulta->execute([$_SESSION['usuario_id']]);
+        $linha = $consulta->fetch();
+        if (!$linha || (int) $linha['ativo'] !== 1) {
+            encerrarSessao();
+            responderJson([
+                'sucesso' => false,
+                'sessao_encerrada' => true,
+                'mensagem' => 'Sua conta foi desativada. Entre em contato com a loja.',
+            ], 401);
+        }
+    } catch (PDOException $e) {
+        responderJson(['sucesso' => false, 'mensagem' => 'Não foi possível verificar a conta. Tente novamente.'], 503);
+    }
+
+    $_SESSION['ultima_atividade'] = $agora;
     return $_SESSION;
 }
 

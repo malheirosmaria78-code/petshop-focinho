@@ -1,27 +1,38 @@
-<svg viewBox="0 0 960 640" xmlns="http://www.w3.org/2000/svg" font-family="Arial, sans-serif">
+<svg viewBox="0 0 960 660" xmlns="http://www.w3.org/2000/svg" font-family="Arial, sans-serif" xmlns:c2pa="http://c2pa.org/manifest"><metadata><c2pa:manifest>AAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYTo4YjVmOTU5MS1iZjRhLTQzZjAtOGJhYy01ZDIyMGIzM2VjNmEAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaEj54fOg4K+mIZFP0CzDmGkAAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDo0MDc5YmM5OC1hZmE5LTQxNjctYjVkMS1jNTJlOTczZmE1YjhscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNoYxTug8F8uWM1O/dQ2hyc7QAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFggh+qNrSXpX1MgIgYESmYd8SDlZl+nlXWMklJwq9HeNDWkZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaF+JamDIONKFnNQlCljjT/IAAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRNAAAAAAAAAAAAAAAAAGRoYXNoWCD9qXyI8oo0oSOPGGTXGxZpsRF6FMyvUVmUbahfq8vPuGRuYW1lbmp1bWJmIG1hbmlmZXN0amV4Y2x1c2lvbnOBomVzdGFydBidZmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOjhiNWY5NTkxLWJmNGEtNDNmMC04YmFjLTVkMjIwYjMzZWM2YS9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOmIwMmJmMDM5LTU4NGQtNGYyOC04ZmUyLTY1NGNkYjRmZDczYnJjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCCH6o2tJelfUyAiBgRKZh3xIOVmX6eVdYySUnCr0d40NaJjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFggqVg90DsSds1qCOYKChOtfXR6iZvWmpesdqaYbzygejuiY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFggcVsp9LqMOwJTT+zxeFHmmF2r504jIkArSuuZBj+Zptl0Y2xhaW1fZ2VuZXJhdG9yX2luZm+jZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g/oGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd/3cyjxFA3Qo5S46fX0/ihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB/wQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj+OPEz5o+nMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn/aArXyTwFAZfKrPzxF2vPoJNf1+UCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9+1rdDwSPLMOPOjKuiXjoU/pUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQJESn6UKocerHBCzQkgcMG1WhLPu4hQ57nI+lkMYt85XYpxqcwO3BZSbJC2jD4TS0Tg4s8IhURDe7aAvbl4/zpY=</c2pa:manifest></metadata>
   <defs>
     <style>
       .titulo { fill: #FFFFFF; font-size: 15px; font-weight: bold; }
-      .campo { fill: #2A2822; font-size: 12.5px; }
-      .campo-pk { fill: #35503F; font-size: 12.5px; font-weight: bold; }
-      .rotulo-linha { fill: #6B6558; font-size: 11px; }
+      .campo { fill: #2A2822; font-size: 12px; }
+      .campo-pk { fill: #35503F; font-size: 12px; font-weight: bold; }
+      .rotulo-linha { fill: #6B6558; font-size: 10.5px; }
     </style>
   </defs>
 
-  <rect x="0" y="0" width="960" height="640" fill="#F3EEE2"/>
+  <rect x="0" y="0" width="960" height="660" fill="#F3EEE2"/>
 
-  <line x1="270" y1="120" x2="560" y2="120" stroke="#B9632E" stroke-width="1.6"/>
-  <text x="410" y="112" text-anchor="middle" class="rotulo-linha">1 usuário → N registros de log</text>
-  <text x="278" y="132" class="rotulo-linha">1</text>
-  <text x="546" y="132" class="rotulo-linha">N</text>
+  <line x1="270" y1="140" x2="320" y2="140" stroke="#B9632E" stroke-width="1.6"/>
+  <text x="295" y="118" text-anchor="middle" class="rotulo-linha">1 usuário</text>
+  <text x="295" y="130" text-anchor="middle" class="rotulo-linha">→ N logs</text>
 
-  <line x1="270" y1="430" x2="560" y2="430" stroke="#B9632E" stroke-width="1.6"/>
-  <text x="410" y="422" text-anchor="middle" class="rotulo-linha">1 categoria → N produtos</text>
-  <text x="278" y="442" class="rotulo-linha">1</text>
-  <text x="546" y="442" class="rotulo-linha">N</text>
+  <line x1="270" y1="365" x2="320" y2="380" stroke="#B9632E" stroke-width="1.6"/>
+  <text x="295" y="322" text-anchor="middle" class="rotulo-linha">1 usuário</text>
+  <text x="295" y="334" text-anchor="middle" class="rotulo-linha">→ N</text>
+  <text x="295" y="346" text-anchor="middle" class="rotulo-linha">pedidos</text>
+
+  <line x1="745" y1="160" x2="745" y2="200" stroke="#B9632E" stroke-width="1.6"/>
+  <text x="835" y="184" text-anchor="middle" class="rotulo-linha">1 categoria</text>
+  <text x="835" y="196" text-anchor="middle" class="rotulo-linha">→ N produtos</text>
+
+  <line x1="745" y1="390" x2="745" y2="430" stroke="#B9632E" stroke-width="1.6"/>
+  <text x="855" y="414" text-anchor="middle" class="rotulo-linha">1 produto</text>
+  <text x="855" y="426" text-anchor="middle" class="rotulo-linha">→ N itens</text>
+
+  <line x1="570" y1="410" x2="620" y2="470" stroke="#B9632E" stroke-width="1.6"/>
+  <text x="595" y="450" text-anchor="middle" class="rotulo-linha">1 pedido</text>
+  <text x="595" y="462" text-anchor="middle" class="rotulo-linha">→ N itens</text>
 
   <g>
-    <rect x="40" y="40" width="230" height="330" rx="10" fill="#FFFFFF" stroke="#DDD4C0"/>
+    <rect x="40" y="40" width="230" height="392" rx="10" fill="#FFFFFF" stroke="#DDD4C0"/>
     <rect x="40" y="40" width="230" height="34" rx="10" fill="#35503F"/>
     <rect x="40" y="58" width="230" height="16" fill="#35503F"/>
     <text x="55" y="63" class="titulo">usuarios</text>
@@ -39,41 +50,73 @@
     <text x="55" y="312" class="campo">senha_hash</text>
     <text x="55" y="332" class="campo">resposta_nome_mae / data / cep</text>
     <text x="55" y="352" class="campo">perfil (master | comum)</text>
+    <text x="55" y="372" class="campo">ativo (1 ativa | 0 desativada)</text>
+    <text x="55" y="392" class="campo">desativado_em</text>
+    <text x="55" y="412" class="campo">criado_em</text>
   </g>
 
   <g>
-    <rect x="560" y="40" width="270" height="190" rx="10" fill="#FFFFFF" stroke="#DDD4C0"/>
-    <rect x="560" y="40" width="270" height="34" rx="10" fill="#35503F"/>
-    <rect x="560" y="58" width="270" height="16" fill="#35503F"/>
-    <text x="575" y="63" class="titulo">log_autenticacao</text>
-    <text x="575" y="92" class="campo-pk">id (PK)</text>
-    <text x="575" y="112" class="campo">usuario_id (FK)</text>
-    <text x="575" y="132" class="campo">nome</text>
-    <text x="575" y="152" class="campo">cpf</text>
-    <text x="575" y="172" class="campo">data_hora</text>
-    <text x="575" y="192" class="campo">pergunta_2fa</text>
-    <text x="575" y="212" class="campo">sucesso</text>
+    <rect x="320" y="40" width="250" height="210" rx="10" fill="#FFFFFF" stroke="#DDD4C0"/>
+    <rect x="320" y="40" width="250" height="34" rx="10" fill="#35503F"/>
+    <rect x="320" y="58" width="250" height="16" fill="#35503F"/>
+    <text x="335" y="63" class="titulo">log_autenticacao</text>
+    <text x="335" y="92" class="campo-pk">id (PK)</text>
+    <text x="335" y="112" class="campo">usuario_id (FK)</text>
+    <text x="335" y="132" class="campo">nome</text>
+    <text x="335" y="152" class="campo">cpf</text>
+    <text x="335" y="172" class="campo">perfil (master | comum)</text>
+    <text x="335" y="192" class="campo">data_hora</text>
+    <text x="335" y="212" class="campo">pergunta_2fa</text>
+    <text x="335" y="232" class="campo">sucesso</text>
   </g>
 
   <g>
-    <rect x="40" y="450" width="200" height="120" rx="10" fill="#FFFFFF" stroke="#DDD4C0"/>
-    <rect x="40" y="450" width="200" height="34" rx="10" fill="#35503F"/>
-    <rect x="40" y="468" width="200" height="16" fill="#35503F"/>
-    <text x="55" y="473" class="titulo">categorias</text>
-    <text x="55" y="502" class="campo-pk">id (PK)</text>
-    <text x="55" y="522" class="campo">nome (UK)</text>
+    <rect x="320" y="280" width="250" height="230" rx="10" fill="#FFFFFF" stroke="#DDD4C0"/>
+    <rect x="320" y="280" width="250" height="34" rx="10" fill="#35503F"/>
+    <rect x="320" y="298" width="250" height="16" fill="#35503F"/>
+    <text x="335" y="303" class="titulo">pedidos</text>
+    <text x="335" y="332" class="campo-pk">id (PK)</text>
+    <text x="335" y="352" class="campo">usuario_id (FK)</text>
+    <text x="335" y="372" class="campo">numero_pedido (UK)</text>
+    <text x="335" y="392" class="campo">subtotal, entrega, total</text>
+    <text x="335" y="412" class="campo">forma_pagamento</text>
+    <text x="335" y="432" class="campo">cartao_final</text>
+    <text x="335" y="452" class="campo">criado_em</text>
   </g>
 
   <g>
-    <rect x="560" y="450" width="270" height="170" rx="10" fill="#FFFFFF" stroke="#DDD4C0"/>
-    <rect x="560" y="450" width="270" height="34" rx="10" fill="#35503F"/>
-    <rect x="560" y="468" width="270" height="16" fill="#35503F"/>
-    <text x="575" y="473" class="titulo">produtos</text>
-    <text x="575" y="502" class="campo-pk">id (PK)</text>
-    <text x="575" y="522" class="campo">categoria_id (FK)</text>
-    <text x="575" y="542" class="campo">nome</text>
-    <text x="575" y="562" class="campo">descricao</text>
-    <text x="575" y="582" class="campo">preco</text>
-    <text x="575" y="602" class="campo">imagem</text>
+    <rect x="620" y="40" width="250" height="120" rx="10" fill="#FFFFFF" stroke="#DDD4C0"/>
+    <rect x="620" y="40" width="250" height="34" rx="10" fill="#35503F"/>
+    <rect x="620" y="58" width="250" height="16" fill="#35503F"/>
+    <text x="635" y="63" class="titulo">categorias</text>
+    <text x="635" y="92" class="campo-pk">id (PK)</text>
+    <text x="635" y="112" class="campo">nome (UK)</text>
+  </g>
+
+  <g>
+    <rect x="620" y="200" width="250" height="190" rx="10" fill="#FFFFFF" stroke="#DDD4C0"/>
+    <rect x="620" y="200" width="250" height="34" rx="10" fill="#35503F"/>
+    <rect x="620" y="218" width="250" height="16" fill="#35503F"/>
+    <text x="635" y="223" class="titulo">produtos</text>
+    <text x="635" y="252" class="campo-pk">id (PK)</text>
+    <text x="635" y="272" class="campo">categoria_id (FK)</text>
+    <text x="635" y="292" class="campo">nome</text>
+    <text x="635" y="312" class="campo">descricao</text>
+    <text x="635" y="332" class="campo">preco</text>
+    <text x="635" y="352" class="campo">imagem</text>
+    <text x="635" y="372" class="campo">especie_indicada</text>
+  </g>
+
+  <g>
+    <rect x="620" y="430" width="250" height="170" rx="10" fill="#FFFFFF" stroke="#DDD4C0"/>
+    <rect x="620" y="430" width="250" height="34" rx="10" fill="#35503F"/>
+    <rect x="620" y="448" width="250" height="16" fill="#35503F"/>
+    <text x="635" y="453" class="titulo">itens_pedido</text>
+    <text x="635" y="482" class="campo-pk">id (PK)</text>
+    <text x="635" y="502" class="campo">pedido_id (FK)</text>
+    <text x="635" y="522" class="campo">produto_id (FK)</text>
+    <text x="635" y="542" class="campo">nome_produto</text>
+    <text x="635" y="562" class="campo">preco_unitario</text>
+    <text x="635" y="582" class="campo">quantidade</text>
   </g>
 </svg>

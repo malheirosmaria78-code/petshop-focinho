@@ -3,13 +3,28 @@
 ## Setup
 
 1. Suba o banco de dados executando `sql/schema.sql` no MySQL (cria o banco `petshop`, as tabelas, o usuário master e alguns produtos de exemplo).
-2. Ajuste as credenciais em `config/database.php` se não estiver usando `root` sem senha.
+2. Configure `PETSHOP_DB_USER` e `PETSHOP_DB_PASSWORD` no ambiente que executa o PHP se não estiver usando `root` sem senha.
 3. O usuário master já vem criado pelo próprio `schema.sql`, com a senha já em hash bcrypt direto no `INSERT` (sem depender de PHP em tempo de execução):
    Login: `master` / Senha: `Adminp3t`
 4. Sirva frontend e backend pelo mesmo servidor, conforme o [passo a passo principal](../README.md#como-executar-localmente). A URL da API é resolvida automaticamente; não é necessário alterar CORS nesse modo.
 5. A FPDF já vem incluída em `lib/fpdf/fpdf.php` — não precisa baixar nada à parte.
 
 `scripts/criar_master.php` continua no projeto apenas como utilitário opcional, caso você precise criar um segundo usuário master mais tarde — não é mais necessário para a primeira configuração.
+
+## Bancos ja existentes
+
+Para usar desativacao e reativacao sem perder registros, faca um backup e execute
+`php scripts/atualizar_contas.php` nesta pasta, com as credenciais do banco no
+ambiente. O mesmo script funciona em MySQL e MariaDB e pode ser repetido.
+Novas instalacoes usam `sql/schema.sql`, que ja inclui a estrutura atual e os
+38 produtos. Para atualizar o catalogo de um banco existente, execute
+`php scripts/atualizar_catalogo.php` nesta pasta. Ele sincroniza por nome sem
+alterar IDs nem apagar pedidos, preserva fotos locais em assets/ e regenera
+`produtos-fallback.js` com os IDs reais. Os caminhos locais das fotos ja estao preparados. Os arquivos ainda precisam
+ser adicionados conforme o README em petshop-frontend/assets/produtos.
+
+O endpoint antigo de exclusao continua apenas desativando contas. Nao ha exclusao
+definitiva nesta integracao. Pedidos ficam protegidos por `ON DELETE RESTRICT`.
 
 ## Endpoints
 
@@ -23,7 +38,8 @@
 | `api/minha_conta.php` | GET | autenticado | Dados completos da conta (nome, contato, endereço) para a página Minha Conta |
 | `api/produtos.php` | GET | público | Lista de produtos, ou um produto (`?id=`) para a tela de detalhe |
 | `api/usuarios.php` | GET | master | Lista/busca usuários comuns (`?busca=`) |
-| `api/excluir_usuario.php` | POST | master | Exclui usuário comum (`{"id": N}`) |
+| `api/excluir_usuario.php` | POST | master | Desativa usuário comum, preservando registros (`{"id": N}`) |
+| `api/alterar_status_usuario.php` | POST | master | Desativa ou reativa usuário comum (`{"id": N, "ativo": true}`) |
 | `api/log.php` | GET | master | Log de autenticação, só de usuários comuns (`?tipo=nome\|cpf\|todos&busca=`) |
 | `api/alterar_senha.php` | POST | comum | Troca a própria senha |
 | `api/exportar_usuarios_pdf.php` | GET | master | Desafio Plus: baixa lista de usuários em PDF |

@@ -1,0 +1,372 @@
+.sobre-intro {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 3.6rem 1.5rem 3rem;
+  display: grid;
+  grid-template-columns: 1.3fr 0.7fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.sobre-eyebrow {
+  margin: 0 0 0.8rem;
+  font-size: 0.9rem;
+  color: var(--ferrugem-escura);
+}
+
+.sobre-intro h1 {
+  margin: 0 0 1.2rem;
+  font-family: var(--fonte-titulo);
+  font-weight: 500;
+  font-size: clamp(1.9rem, 4.2vw, 2.9rem);
+  line-height: 1.15;
+  color: var(--pinho);
+}
+
+.sobre-intro p {
+  margin: 0 0 1rem;
+  max-width: 58ch;
+  font-size: 1.04rem;
+  color: var(--tinta-suave);
+}
+
+.carimbo {
+  justify-self: center;
+  width: min(100%, 280px);
+  color: var(--ferrugem);
+  transform: rotate(-7deg);
+}
+
+.carimbo svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.carimbo text {
+  font-family: var(--fonte-corpo);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 2.2px;
+  fill: currentColor;
+}
+
+.secao-pagina {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 2.8rem 1.5rem;
+  border-top: 1px solid var(--linha);
+}
+
+.secao-pagina h2 {
+  margin: 0 0 1.4rem;
+  font-family: var(--fonte-titulo);
+  font-weight: 500;
+  font-size: 1.6rem;
+  color: var(--pinho);
+}
+
+.coluna-texto {
+  max-width: 66ch;
+}
+
+.coluna-texto p {
+  margin: 0 0 1rem;
+  color: var(--tinta-suave);
+}
+
+.cartoes-sobre {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.2rem;
+}
+
+.cartao-sobre {
+  padding: 1.5rem;
+  border: 1px solid var(--linha);
+  border-radius: 12px;
+  background: var(--superficie);
+}
+
+.cartao-sobre svg {
+  display: block;
+  margin-bottom: 0.9rem;
+  color: var(--ferrugem);
+}
+
+.cartao-sobre h3 {
+  margin: 0 0 0.4rem;
+  font-family: var(--fonte-titulo);
+  font-weight: 500;
+  font-size: 1.1rem;
+  color: var(--tinta);
+}
+
+.cartao-sobre p {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--tinta-suave);
+}
+
+.valores {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2.2rem;
+}
+
+.valor {
+  padding-left: 1.1rem;
+  border-left: 3px solid var(--dourado);
+}
+
+.valor h3 {
+  margin: 0 0 0.4rem;
+  font-family: var(--fonte-titulo);
+  font-weight: 500;
+  font-size: 1.15rem;
+  color: var(--tinta);
+}
+
+.valor p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--tinta-suave);
+}
+
+.visite {
+  max-width: 1120px;
+  margin: 1rem auto 4rem;
+  padding: 0 1.5rem;
+}
+
+.visite-faixa {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+  padding: 2.4rem 2.6rem;
+  border-radius: 18px;
+  background: #223327;
+  color: #F6F1E4;
+}
+
+.visite-faixa h2 {
+  margin: 0 0 0.5rem;
+  font-family: var(--fonte-titulo);
+  font-weight: 500;
+  font-size: 1.6rem;
+  color: #F6F1E4;
+}
+
+.visite-faixa p {
+  margin: 0;
+  color: #D9D2C0;
+}
+
+.visite-dados {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.visite-dado span {
+  display: block;
+  font-size: 0.78rem;
+  color: #E3AC49;
+}
+
+.visite-dado strong {
+  font-weight: 500;
+  font-size: 1rem;
+  color: #F6F1E4;
+}
+
+.visite-botao {
+  display: inline-block;
+  margin-top: 1.2rem;
+  padding: 0.65rem 1.5rem;
+  border-radius: 999px;
+  background: #F6F1E4;
+  color: #223327;
+  font-size: 0.92rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.visite-botao:hover {
+  background: #E3AC49;
+}
+
+.faq-topo {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 3.2rem 1.5rem 1.6rem;
+}
+
+.faq-topo h1 {
+  margin: 0 0 0.6rem;
+  font-family: var(--fonte-titulo);
+  font-weight: 500;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  color: var(--pinho);
+}
+
+.faq-topo p {
+  margin: 0 0 1.4rem;
+  max-width: 58ch;
+  color: var(--tinta-suave);
+}
+
+.faq-atalhos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.faq-atalhos a {
+  padding: 0.4rem 1rem;
+  border: 1px solid var(--linha);
+  border-radius: 999px;
+  background: var(--superficie);
+  color: var(--pinho);
+  font-size: 0.88rem;
+  text-decoration: none;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.faq-atalhos a:hover {
+  border-color: var(--pinho);
+}
+
+.faq-lista {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 0.5rem 1.5rem 3rem;
+}
+
+.faq-grupo {
+  margin-bottom: 2.4rem;
+  scroll-margin-top: 90px;
+}
+
+.faq-grupo h2 {
+  margin: 0 0 0.6rem;
+  font-family: var(--fonte-titulo);
+  font-weight: 500;
+  font-size: 1.35rem;
+  color: var(--tinta);
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--linha);
+}
+
+.faq-item summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 0;
+  list-style: none;
+  cursor: pointer;
+  font-weight: 500;
+  color: var(--tinta);
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary::after {
+  content: "";
+  flex: none;
+  width: 9px;
+  height: 9px;
+  margin-right: 4px;
+  border-right: 2px solid var(--ferrugem);
+  border-bottom: 2px solid var(--ferrugem);
+  transform: rotate(45deg);
+  transition: transform 0.25s ease;
+}
+
+.faq-item[open] summary::after {
+  transform: rotate(-135deg);
+}
+
+.faq-item summary:hover {
+  color: var(--pinho);
+}
+
+.faq-item summary:focus-visible {
+  outline: 2px solid var(--ferrugem);
+  outline-offset: 2px;
+}
+
+.faq-resposta {
+  padding: 0 2rem 1.2rem 0;
+  color: var(--tinta-suave);
+  font-size: 0.96rem;
+}
+
+.faq-resposta p {
+  margin: 0 0 0.6rem;
+}
+
+.faq-resposta a {
+  color: var(--ferrugem-escura);
+}
+
+.faq-contato {
+  max-width: 820px;
+  margin: 0 auto 4rem;
+  padding: 0 1.5rem;
+}
+
+.faq-contato-caixa {
+  padding: 1.6rem 1.8rem;
+  border: 1px dashed var(--ferrugem);
+  border-radius: 14px;
+}
+
+.faq-contato-caixa h2 {
+  margin: 0 0 0.4rem;
+  font-family: var(--fonte-titulo);
+  font-weight: 500;
+  font-size: 1.25rem;
+  color: var(--pinho);
+}
+
+.faq-contato-caixa p {
+  margin: 0;
+  color: var(--tinta-suave);
+}
+
+@media (max-width: 760px) {
+  .sobre-intro {
+    grid-template-columns: 1fr;
+    gap: 1.6rem;
+    padding-top: 2.4rem;
+  }
+
+  .carimbo {
+    width: 190px;
+    justify-self: start;
+  }
+
+  .visite-faixa {
+    grid-template-columns: 1fr;
+    padding: 1.8rem 1.5rem;
+  }
+
+  .faq-resposta {
+    padding-right: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faq-item summary::after,
+  .faq-atalhos a,
+  .visite-botao {
+    transition: none;
+  }
+}

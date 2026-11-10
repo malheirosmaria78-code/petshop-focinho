@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/estilo.css">
+<link rel="stylesheet" href="css/banners.css">
 </head>
 <body data-pagina="index.html">
 
@@ -47,10 +48,51 @@
 </header>
 
 <main>
+  <section class="banners" aria-roledescription="carrossel" aria-label="Destaques da loja">
+    <div class="banners-quadro" data-banners data-intervalo="6000">
+      <div class="banners-trilho">
+        <article class="banner-slide tema-pinho ativo" aria-roledescription="slide" aria-label="1 de 2">
+          <div class="banner-texto">
+            <p class="banner-eyebrow">Banho e tosa</p>
+            <p class="banner-titulo">Banho, tosa e hidratação com todo o carinho</p>
+            <p class="banner-descricao">Seu bichinho sai cheiroso, macio e feliz, cuidado por quem entende de pelagem.</p>
+            <a href="#catalogo" class="banner-botao">Conhecer os serviços</a>
+          </div>
+          <div class="banner-foto">
+            <img src="assets/banners/banho-e-tosa.jpg" alt="Filhote enrolado em uma toalha depois do banho">
+          </div>
+        </article>
+
+        <article class="banner-slide tema-ferrugem" aria-roledescription="slide" aria-label="2 de 2" aria-hidden="true">
+          <div class="banner-texto">
+            <p class="banner-eyebrow">Ração e petiscos</p>
+            <p class="banner-titulo">Alimentação de qualidade para cães e gatos</p>
+            <p class="banner-descricao">Rações, sachês e petiscos para cada fase da vida, do filhote ao sênior.</p>
+            <a href="#catalogo" class="banner-botao" tabindex="-1">Ver rações e petiscos</a>
+          </div>
+          <div class="banner-foto">
+            <img src="assets/banners/racao-e-petiscos.jpg" alt="Gato rajado comendo ração">
+          </div>
+        </article>
+      </div>
+
+      <button type="button" class="banner-seta banner-seta-anterior" aria-label="Banner anterior">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button type="button" class="banner-seta banner-seta-proximo" aria-label="Próximo banner">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+
+      <div class="banner-pontos" role="group" aria-label="Escolher banner">
+        <button type="button" class="banner-ponto ativo" aria-label="Ir para o banner 1"></button>
+        <button type="button" class="banner-ponto" aria-label="Ir para o banner 2"></button>
+      </div>
+    </div>
+  </section>
+
   <section class="capa">
     <div class="capa-conteudo">
       <p class="capa-eyebrow">Copacabana, Rio de Janeiro</p>
-      <h1>Tudo o que o seu companheiro de quatro patas merece, escolhido com carinho.</h1>
       <p class="capa-texto">Ração, higiene, brinquedos e serviços de banho e tosa — separados por quem entende que cada bicho tem seu jeito.</p>
       <form class="capa-busca" id="form-busca" role="search">
         <label for="busca-produto" class="visualmente-oculto">Buscar produto</label>
@@ -60,7 +102,7 @@
     </div>
   </section>
 
-  <section class="catalogo" aria-labelledby="titulo-catalogo">
+  <section class="catalogo" id="catalogo" aria-labelledby="titulo-catalogo">
     <div class="catalogo-cabecalho">
       <h2 id="titulo-catalogo">Nossos produtos</h2>
       <p id="contagem-resultados" class="catalogo-contagem"></p>
@@ -95,7 +137,9 @@
   </div>
 </footer>
 
+<script src="js/produtos-fallback.js"></script>
 <script src="js/comum.js"></script>
+<script src="js/banners.js"></script>
 <script src="js/principal.js"></script>
 </body>
 </html>

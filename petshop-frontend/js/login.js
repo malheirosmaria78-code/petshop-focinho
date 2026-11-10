@@ -2,6 +2,11 @@ const parametros = new URLSearchParams(window.location.search);
 if (parametros.get('cadastrado') === '1') {
   mostrarAviso('Cadastro concluído — faça login para continuar');
 }
+const avisoSessao = sessionStorage.getItem('avisoSessao');
+if (avisoSessao) {
+  sessionStorage.removeItem('avisoSessao');
+  mostrarAviso(avisoSessao);
+}
 if (parametros.get('bloqueado') === '1') {
   mostrarAviso('3 tentativas sem sucesso! Favor realizar Login novamente.');
 }

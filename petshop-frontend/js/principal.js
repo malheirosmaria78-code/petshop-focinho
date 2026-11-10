@@ -1,4 +1,5 @@
 let produtosCarregados = [];
+let origemCatalogo = 'servidor';
 
 function agruparPorCategoria(produtos) {
   const grupos = new Map();
@@ -26,7 +27,13 @@ function renderizarCatalogo(produtos) {
   }
 
   estadoVazio.hidden = true;
-  contagem.textContent = `${produtos.length} produto${produtos.length === 1 ? '' : 's'}`;
+  const textosOrigem = {
+    servidor: '',
+    cache: ' · servidor offline: última versão carregada do servidor',
+    local: ' · servidor offline: cópia do arquivo produtos-fallback.js',
+  };
+  const aviso = textosOrigem[origemCatalogo] ?? '';
+  contagem.textContent = `${produtos.length} produto${produtos.length === 1 ? '' : 's'}${aviso}`;
 
   const grupos = agruparPorCategoria(produtos);
 
@@ -47,7 +54,7 @@ function renderizarCatalogo(produtos) {
       card.className = 'produto-card';
       card.innerHTML = `
         <a href="produto.html?id=${produto.id}" class="produto-foto">
-          <img src="${produto.imagem}" alt="${produto.nome}" loading="lazy">
+          <img src="${urlImagemProduto(produto.imagem)}" alt="${produto.nome}" loading="lazy" onerror="this.onerror=null;this.src=IMAGEM_PADRAO">
         </a>
         <a href="produto.html?id=${produto.id}" class="produto-nome-link">
           <h4 class="produto-nome">${produto.nome}</h4>
@@ -78,14 +85,9 @@ async function carregarProdutos() {
   erro.hidden = true;
 
   try {
-    const resposta = await fetch(`${API_BASE}/produtos.php`, { credentials: 'include' });
-    const dados = await resposta.json();
-
-    if (!resposta.ok || !dados.sucesso) {
-      throw new Error(dados.mensagem || 'Falha ao carregar produtos');
-    }
-
-    produtosCarregados = dados.produtos;
+    const resultado = await buscarProdutos();
+    produtosCarregados = resultado.produtos;
+    origemCatalogo = resultado.origem;
     renderizarCatalogo(produtosCarregados);
   } catch (falha) {
     erro.hidden = false;
