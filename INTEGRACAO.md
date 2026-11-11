@@ -45,16 +45,15 @@ continua pendente.
 - [x] Comparar o ZIP e criar uma branch de feature a partir do repositorio atual.
 - [x] Integrar as novidades preservando configuracao de ambiente e desativacao.
 - [x] Validar estrutura e fluxo de contas em banco isolado (MySQL 8.4).
-- [x] Validar fluxo de desativacao/reativacao na pagina: usuario confirmou funcionamento em 10/11/2026.
+- [x] Validar manualmente o fluxo de desativacao/reativacao pela interface em 10/11/2026.
 - [ ] Validar layout em tela de celular.
 - [x] Primeiro commit de integracao enviado para a branch de feature.
 - [x] Consolidar os 38 produtos no schema e testar o atualizador do catalogo.
 - [x] Preparar o esqueleto das imagens: pasta, nomes esperados e caminhos locais
       no schema e na copia offline; placeholder enquanto os arquivos nao existem.
 - [ ] Adicionar as fotos reais nas pastas assets/produtos e assets/banners.
-- [ ] **Lembrete para depois: atualizar o catalogo do banco real.** O usuario
-      pediu para nao atualizar agora. Usar scripts/atualizar_catalogo.php quando
-      retomar essa etapa; ele tambem regenera a copia offline.
+- [ ] Atualizar o catalogo do banco local apos adicionar as fotos, usando
+      scripts/atualizar_catalogo.php. O script tambem regenera a copia offline.
 
 O Pix e apenas demonstrativo: a confirmacao automatica nao comprova pagamento.
 
@@ -74,8 +73,8 @@ Testes HTTP com PHP e MySQL temporarios, sem usar o banco do desenvolvedor:
 
 Todos passaram. A sintaxe PHP/JavaScript e o diff tambem foram verificados.
 MariaDB/XAMPP e interface no celular ainda precisam de validacao no ambiente alvo.
-O usuario executou a atualizacao no banco real e confirmou a mensagem de sucesso.
-Tambem confirmou que o fluxo na pagina esta funcionando.
+A atualizacao da estrutura foi aplicada no banco local em 10/11/2026.
+O fluxo de desativacao e reativacao tambem foi validado manualmente pela interface.
 
 ## Correcao do catalogo de instalacao
 
