@@ -52,8 +52,8 @@ continua pendente.
 - [x] Preparar o esqueleto das imagens: pasta, nomes esperados e caminhos locais
       no schema e na copia offline; placeholder enquanto os arquivos nao existem.
 - [ ] Adicionar as fotos reais nas pastas assets/produtos e assets/banners.
-- [ ] Atualizar o catalogo do banco local apos adicionar as fotos, usando
-      scripts/atualizar_catalogo.php. O script tambem regenera a copia offline.
+- [x] Atualizar o catalogo do banco local, usando scripts/atualizar_catalogo.php,
+      em 12/11/2026. A copia offline tambem foi regenerada; as fotos seguem pendentes.
 
 O Pix e apenas demonstrativo: a confirmacao automatica nao comprova pagamento.
 
@@ -100,5 +100,20 @@ Enquanto os arquivos nao existem, a interface usa Foto em breve.
 Validado: 38 caminhos unicos, consistentes entre schema, fallback e instrucoes;
 JavaScript sem erros de sintaxe; banners com imagem ausente usam o placeholder
 mesmo quando o erro ocorre antes do carregamento do script, sem ocultar a imagem.
-O banco real ainda guarda seus valores anteriores e nao foi atualizado nesta
-etapa; ele pode continuar entregando os links antigos ate a sincronizacao.
+Na etapa inicial, o banco real manteve os valores anteriores. A sincronizacao
+foi concluida em 12/11/2026: os 38 produtos agora usam os caminhos locais.
+
+## Conferencia do banco local em 12/11/2026
+
+Backup completo criado antes da atualizacao em backups/, fora do Git e com
+acesso HTTP bloqueado por .htaccess no Apache. Estrutura de contas e catalogo
+atualizados pelos scripts do projeto.
+
+Conferencia no MariaDB 10.4.32 do XAMPP: as seis tabelas possuem as colunas,
+tipos, valores padrao, indices unicos e chaves estrangeiras previstos no schema.
+O campo desativado_em esta presente e pedidos referencia usuarios com RESTRICT.
+Schema, banco e copia offline possuem os mesmos 38 produtos, inclusive IDs,
+nomes, descricoes, precos, imagens, especies e categorias. Distribuicao:
+Racao 6, Higiene e Banho 7, Brinquedos 7, Acessorios 7, Servicos 6 e Petisco 5.
+Os 38 caminhos das fotos constam no README de assets/produtos, mas os arquivos
+de imagem ainda estao ausentes.

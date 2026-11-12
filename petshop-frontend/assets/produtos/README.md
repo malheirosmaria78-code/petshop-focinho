@@ -54,9 +54,9 @@ no Linux; mantenha os nomes em minusculas.
 
 1. Compartilhe os arquivos pelo Git.
 2. Bancos novos recebem os caminhos locais ao importar `petshop-backend/sql/schema.sql`.
-3. **Lembrete pendente:** atualizar o catalogo do banco local com
+3. Para sincronizar alteracoes futuras, atualize o catalogo do banco local com
    `php petshop-backend/scripts/atualizar_catalogo.php`, com as credenciais do
-   MySQL no ambiente. Isso ainda nao foi executado no banco real.
+   MySQL no ambiente. O banco local ja foi sincronizado em 12/11/2026.
 4. O atualizador regenera `produtos-fallback.js` com os IDs do banco.
 5. Recarregue a pagina. Um carrinho antigo pode conter links anteriores; o
    caminho de imagem e salvo junto com o item. Limpe o carrinho e adicione os

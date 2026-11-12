@@ -48,7 +48,7 @@ window.PRODUTOS_FALLBACK = [
         "id": 9,
         "nome": "Comedouro Duplo Inox",
         "descricao": "Comedouro de aço inoxidável com base antiderrapante, fácil de higienizar.",
-        "preco": 45.0,
+        "preco": 45,
         "imagem": "assets/produtos/comedouro-duplo-inox.jpg",
         "especie_indicada": "Cães e gatos",
         "categoria": "Acessórios"
@@ -183,7 +183,7 @@ window.PRODUTOS_FALLBACK = [
         "id": 5,
         "nome": "Toalha de Microfibra Secagem Rápida",
         "descricao": "Toalha de alta absorção para depois do banho, reduz o tempo de secagem.",
-        "preco": 42.0,
+        "preco": 42,
         "imagem": "assets/produtos/toalha-de-microfibra-secagem-rapida.jpg",
         "especie_indicada": "Cães e gatos",
         "categoria": "Higiene e Banho"
@@ -261,6 +261,15 @@ window.PRODUTOS_FALLBACK = [
         "categoria": "Ração"
     },
     {
+        "id": 15,
+        "nome": "Ração para Gatos Castrados 3kg",
+        "descricao": "Fórmula com baixo teor de gordura e minerais controlados, indicada para gatos castrados adultos.",
+        "preco": 84.9,
+        "imagem": "assets/produtos/racao-para-gatos-castrados-3kg.jpg",
+        "especie_indicada": "Gatos",
+        "categoria": "Ração"
+    },
+    {
         "id": 1,
         "nome": "Ração Premium Cães Adultos 15kg",
         "descricao": "Ração completa para cães adultos de porte médio e grande, com carne e cereais integrais.",
@@ -279,15 +288,6 @@ window.PRODUTOS_FALLBACK = [
         "categoria": "Ração"
     },
     {
-        "id": 15,
-        "nome": "Ração para Gatos Castrados 3kg",
-        "descricao": "Fórmula com baixo teor de gordura e minerais controlados, indicada para gatos castrados adultos.",
-        "preco": 84.9,
-        "imagem": "assets/produtos/racao-para-gatos-castrados-3kg.jpg",
-        "especie_indicada": "Gatos",
-        "categoria": "Ração"
-    },
-    {
         "id": 10,
         "nome": "Banho e Tosa Completo",
         "descricao": "Serviço de banho, tosa higiênica, corte de unhas e limpeza de ouvidos.",
@@ -300,7 +300,7 @@ window.PRODUTOS_FALLBACK = [
         "id": 36,
         "nome": "Corte de Unhas",
         "descricao": "Corte e lixamento das unhas feitos com cuidado por profissional treinado.",
-        "preco": 25.0,
+        "preco": 25,
         "imagem": "assets/produtos/corte-de-unhas.jpg",
         "especie_indicada": "Cães e gatos",
         "categoria": "Serviços"
@@ -309,7 +309,7 @@ window.PRODUTOS_FALLBACK = [
         "id": 37,
         "nome": "Escovação de Dentes",
         "descricao": "Higiene bucal com pasta própria para pets, ajuda a prevenir tártaro e mau hálito.",
-        "preco": 35.0,
+        "preco": 35,
         "imagem": "assets/produtos/escovacao-de-dentes.jpg",
         "especie_indicada": "Cães",
         "categoria": "Serviços"
@@ -327,7 +327,7 @@ window.PRODUTOS_FALLBACK = [
         "id": 38,
         "nome": "Tosa Higiênica",
         "descricao": "Aparo das regiões íntimas, patas e barriga para mais higiene no dia a dia.",
-        "preco": 45.0,
+        "preco": 45,
         "imagem": "assets/produtos/tosa-higienica.jpg",
         "especie_indicada": "Cães e gatos",
         "categoria": "Serviços"
