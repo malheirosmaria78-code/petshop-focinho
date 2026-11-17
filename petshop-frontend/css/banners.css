@@ -111,6 +111,14 @@
   display: block;
 }
 
+.tema-pinho .banner-foto img {
+  object-position: 65% 42%;
+}
+
+.tema-ferrugem .banner-foto img {
+  object-position: 65% 55%;
+}
+
 .banner-foto::before {
   content: "";
   position: absolute;

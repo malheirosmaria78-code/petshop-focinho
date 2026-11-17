@@ -96,14 +96,18 @@ async function carregarProdutos() {
   }
 }
 
+function normalizarBusca(texto) {
+  return String(texto).normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim().toLowerCase();
+}
+
 function filtrarProdutos(termo) {
-  const termoNormalizado = termo.trim().toLowerCase();
+  const termoNormalizado = normalizarBusca(termo);
   if (termoNormalizado === '') {
     renderizarCatalogo(produtosCarregados);
     return;
   }
   const filtrados = produtosCarregados.filter((produto) =>
-    produto.nome.toLowerCase().includes(termoNormalizado)
+    normalizarBusca(produto.nome).includes(termoNormalizado)
   );
   renderizarCatalogo(filtrados);
 }

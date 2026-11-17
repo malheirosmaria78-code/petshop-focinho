@@ -37,18 +37,22 @@ async function carregarDadosConta() {
       throw new Error('Falha ao carregar dados');
     }
 
-    grade.innerHTML = Object.entries(rotulosCampo)
-      .map(([chave, rotulo]) => {
-        const valor = dados.usuario[chave];
-        if (!valor) return '';
-        return `
-          <div class="dados-conta-item">
-            <span class="rotulo">${rotulo}</span>
-            <span class="valor">${valor}</span>
-          </div>
-        `;
-      })
-      .join('');
+    grade.replaceChildren();
+    Object.entries(rotulosCampo).forEach(([chave, rotulo]) => {
+      const valor = dados.usuario[chave];
+      if (!valor) return;
+
+      const item = document.createElement('div');
+      item.className = 'dados-conta-item';
+      const titulo = document.createElement('span');
+      titulo.className = 'rotulo';
+      titulo.textContent = rotulo;
+      const conteudo = document.createElement('span');
+      conteudo.className = 'valor';
+      conteudo.textContent = valor;
+      item.append(titulo, conteudo);
+      grade.appendChild(item);
+    });
 
     grade.hidden = false;
   } catch (falha) {

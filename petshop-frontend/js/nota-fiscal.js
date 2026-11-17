@@ -4,14 +4,29 @@ const rotulosPagamento = {
   pix: 'Pix',
 };
 
-function carregarNotaFiscal() {
+async function carregarNotaFiscal() {
+  const usuario = await carregarSessao();
+  if (!usuario) {
+    sessionStorage.removeItem('ultimoPedido');
+    window.location.replace('login.html');
+    return;
+  }
+
   const bruto = sessionStorage.getItem('ultimoPedido');
   if (!bruto) {
     document.getElementById('estado-sem-pedido').hidden = false;
     return;
   }
 
-  const pedido = JSON.parse(bruto);
+  let pedido;
+  try {
+    pedido = JSON.parse(bruto);
+    if (!pedido || !Array.isArray(pedido.itens)) throw new Error('Pedido inválido');
+  } catch (falha) {
+    sessionStorage.removeItem('ultimoPedido');
+    document.getElementById('estado-sem-pedido').hidden = false;
+    return;
+  }
 
   document.getElementById('nota-numero').textContent = pedido.numero;
   document.getElementById('nota-data').textContent = new Date(pedido.dataHora).toLocaleString('pt-BR');

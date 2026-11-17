@@ -133,6 +133,8 @@ O objetivo principal do projeto é praticar a integração entre frontend, backe
 
 O projeto ainda está em desenvolvimento e algumas partes podem sofrer alterações ou melhorias.
 
+As proximas features planejadas estao em [ROADMAP.md](ROADMAP.md).
+
 ## Integracao da versao recebida em ZIP
 
 Consulte [INTEGRACAO.md](INTEGRACAO.md) para as decisoes, atualizacao do banco

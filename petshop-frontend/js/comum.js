@@ -256,6 +256,7 @@ function renderizarAreaConta(usuario) {
   montarMenu(usuario);
 
   document.getElementById('botao-sair').addEventListener('click', async () => {
+    sessionStorage.removeItem('ultimoPedido');
     try {
       await fetch(`${API_BASE}/logout.php`, { method: 'POST', credentials: 'include' });
     } catch (falha) {
@@ -270,6 +271,7 @@ async function carregarSessao() {
   try {
     const resposta = await fetch(`${API_BASE}/perfil.php`, { credentials: 'include' });
     if (!resposta.ok) {
+      if (resposta.status === 401) sessionStorage.removeItem('ultimoPedido');
       try {
         const falha = await resposta.json();
         if (falha.expirada || falha.sessao_encerrada) {

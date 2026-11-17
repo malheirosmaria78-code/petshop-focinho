@@ -861,6 +861,10 @@ table.tabela-dados tr:last-child td {
   padding: 0 4px;
 }
 
+.carrinho-badge[hidden] {
+  display: none;
+}
+
 .badge-especie {
   display: inline-block;
   background: color-mix(in srgb, var(--pinho) 12%, transparent);

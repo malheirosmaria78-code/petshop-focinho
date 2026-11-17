@@ -45,6 +45,7 @@ document.getElementById('form-login').addEventListener('submit', async (evento) 
       return;
     }
 
+    sessionStorage.removeItem('ultimoPedido');
     sessionStorage.setItem('pergunta2fa', dados.pergunta_2fa);
     sessionStorage.setItem('pergunta2faTexto', dados.pergunta_2fa_texto);
     window.location.href = 'dupla-fator.html';

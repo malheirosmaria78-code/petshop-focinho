@@ -27,8 +27,10 @@ $subtotal = 0;
 $itensValidados = [];
 
 foreach ($dados['itens'] as $item) {
-    if (empty($item['id']) || empty($item['quantidade']) || (int) $item['quantidade'] < 1) {
-        responderJson(['sucesso' => false, 'mensagem' => 'Item de pedido inválido'], 422);
+    if (!is_array($item) || !isset($item['id'], $item['quantidade'])
+        || !is_int($item['id']) || $item['id'] < 1
+        || !is_int($item['quantidade']) || $item['quantidade'] < 1) {
+        responderJson(['sucesso' => false, 'mensagem' => 'Produto e quantidade devem ser números inteiros positivos'], 422);
     }
 
     $consultaProduto = $pdo->prepare('SELECT id, nome, preco FROM produtos WHERE id = ?');
