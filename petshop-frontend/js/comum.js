@@ -223,7 +223,6 @@ function montarMenu(usuario) {
     } else {
       links.push(['minha-conta.html', 'Minha conta']);
     }
-    links.push(['modelo-bd.html', 'Modelo do BD']);
   }
 
   menu.classList.toggle('menu-longo', links.length > 4);
