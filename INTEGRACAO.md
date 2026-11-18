@@ -5,7 +5,7 @@ Base: main, commit 7e7da24. Origem: petshop.zip recebido em 10/11/2026.
 ## Decisoes desta feature
 
 - Preservar a URL relativa da API para Linux, XAMPP e acesso pelo endereco do servidor.
-- Preservar credenciais por variaveis de ambiente, a regra atual de senha e telefone fixo opcional.
+- Preservar credenciais por variaveis de ambiente. As regras de cadastro foram posteriormente alinhadas ao enunciado: senha com oito letras e telefone fixo obrigatorio.
 - Preservar desativacao sem exclusao definitiva, incluindo o endpoint antigo.
 - Acrescentar reativacao, status/data de desativacao, bloqueio de sessoes inativas e expiracao por inatividade.
 - Incluir paginas institucionais, banners, ajustes responsivos e Pix de demonstracao.

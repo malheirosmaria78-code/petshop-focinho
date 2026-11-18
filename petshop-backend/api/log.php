@@ -12,6 +12,10 @@ if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
 }
 
 $tipo = $_GET['tipo'] ?? 'todos';
+if (!is_string($tipo) || !in_array($tipo, ['todos', 'nome', 'cpf'], true)
+    || (isset($_GET['busca']) && !is_string($_GET['busca']))) {
+    responderJson(['sucesso' => false, 'mensagem' => 'Filtro de log inválido'], 422);
+}
 $busca = trim($_GET['busca'] ?? '');
 
 $pdo = conectarBanco();

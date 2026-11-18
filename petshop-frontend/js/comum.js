@@ -223,6 +223,7 @@ function montarMenu(usuario) {
     } else {
       links.push(['minha-conta.html', 'Minha conta']);
     }
+    links.push(['modelo-bd.html', 'Modelo do BD']);
   }
 
   menu.classList.toggle('menu-longo', links.length > 4);
@@ -248,7 +249,7 @@ function renderizarAreaConta(usuario) {
 
   area.innerHTML = `
     <div class="conta-usuario">
-      <span class="conta-nome">${usuario.nome_completo.split(' ')[0]}</span>
+      <span class="conta-nome">${escaparHtml(usuario.login)}</span>
       <button type="button" class="conta-sair" id="botao-sair">Sair</button>
     </div>
   `;
@@ -289,6 +290,12 @@ async function carregarSessao() {
     renderizarAreaConta(null);
     return null;
   }
+}
+
+function exigirSessaoNaPagina() {
+  carregarSessao().then((usuario) => {
+    if (!usuario) window.location.href = 'login.html';
+  });
 }
 
 function exigirPerfilNaPagina(perfilExigido) {

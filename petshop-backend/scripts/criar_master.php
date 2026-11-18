@@ -4,7 +4,7 @@ require_once __DIR__ . '/../config/database.php';
 require_once __DIR__ . '/../includes/funcoes.php';
 
 $login = 'master';
-$senha = 'Adminp3t';
+$senha = 'Adminpet';
 
 if (php_sapi_name() !== 'cli') {
     exit('Execute este script pela linha de comando: php scripts/criar_master.php');
@@ -26,11 +26,11 @@ $senhaHash = password_hash($senha, PASSWORD_BCRYPT);
 
 $sql = 'INSERT INTO usuarios (
     nome_completo, data_nascimento, sexo, nome_materno, cpf, email,
-    telefone_celular, cep, logradouro, numero, bairro, cidade, uf,
+    telefone_celular, telefone_fixo, cep, logradouro, numero, bairro, cidade, uf,
     login, senha_hash, resposta_nome_mae, resposta_data_nascimento, resposta_cep, perfil
 ) VALUES (
     :nome_completo, :data_nascimento, :sexo, :nome_materno, :cpf, :email,
-    :telefone_celular, :cep, :logradouro, :numero, :bairro, :cidade, :uf,
+    :telefone_celular, :telefone_fixo, :cep, :logradouro, :numero, :bairro, :cidade, :uf,
     :login, :senha_hash, :resposta_nome_mae, :resposta_data_nascimento, :resposta_cep, "master"
 )';
 
@@ -42,7 +42,8 @@ $insercao->execute([
     'nome_materno' => 'Nao Informado',
     'cpf' => '00000000191',
     'email' => 'admin@petshop.local',
-    'telefone_celular' => '(+55)21-999999999',
+    'telefone_celular' => '(+55)21-35550000',
+    'telefone_fixo' => '(+55)21-35550000',
     'cep' => '20000000',
     'logradouro' => 'Sede Administrativa',
     'numero' => '1',

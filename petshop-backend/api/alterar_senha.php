@@ -13,12 +13,15 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 $dados = lerCorpoJson();
 
-if (empty($dados['senha_atual']) || empty($dados['nova_senha']) || empty($dados['confirmacao_nova_senha'])) {
+if (!isset($dados['senha_atual'], $dados['nova_senha'], $dados['confirmacao_nova_senha'])
+    || !is_string($dados['senha_atual']) || !is_string($dados['nova_senha'])
+    || !is_string($dados['confirmacao_nova_senha'])
+    || $dados['senha_atual'] === '' || $dados['nova_senha'] === '' || $dados['confirmacao_nova_senha'] === '') {
     responderJson(['sucesso' => false, 'mensagem' => 'Todos os campos são obrigatórios'], 422);
 }
 
 if (!validarSenha($dados['nova_senha'])) {
-    responderJson(['sucesso' => false, 'mensagem' => 'Nova senha deve ter exatamente 8 caracteres, com letra maiúscula, minúscula e número'], 422);
+    responderJson(['sucesso' => false, 'mensagem' => 'Nova senha deve ter exatamente 8 letras'], 422);
 }
 
 if ($dados['nova_senha'] !== $dados['confirmacao_nova_senha']) {

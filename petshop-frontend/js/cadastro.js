@@ -19,7 +19,7 @@ function validarNome(valor) {
 }
 
 function validarTelefoneFormato(valor) {
-  return /^\(\+55\)\d{2}-\d{8,9}$/.test(valor);
+  return /^\(\+55\)\d{2}-\d{8}$/.test(valor);
 }
 
 function validarLoginFormato(valor) {
@@ -27,7 +27,7 @@ function validarLoginFormato(valor) {
 }
 
 function validarSenhaFormato(valor) {
-  return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8}$/.test(valor);
+  return /^[A-Za-z]{8}$/.test(valor);
 }
 
 function validarDataNascimento(valor) {
@@ -54,8 +54,11 @@ function marcarCampo(idGrupo, valido) {
 
 function mascararTelefone(campo) {
   campo.addEventListener('input', () => {
-    let numeros = campo.value.replace(/\D/g, '').replace(/^55/, '');
-    if (numeros.length > 11) numeros = numeros.slice(0, 11);
+    let numeros = campo.value.replace(/\D/g, '');
+    if (campo.value.trim().startsWith('(+55)') || (numeros.length > 10 && numeros.startsWith('55'))) {
+      numeros = numeros.slice(2);
+    }
+    numeros = numeros.slice(0, 10);
     if (numeros.length <= 2) {
       campo.value = numeros.length ? `(+55)${numeros}` : '';
       return;
@@ -140,6 +143,12 @@ function limitarAnoNascimento() {
 campoNascimento.addEventListener('input', limitarAnoNascimento);
 campoNascimento.addEventListener('change', limitarAnoNascimento);
 
+document.getElementById('form-cadastro').addEventListener('reset', () => {
+  document.querySelectorAll('.campo-grupo').forEach((grupo) => grupo.classList.remove('valido', 'invalido'));
+  document.getElementById('erro-geral').classList.remove('mostrar');
+  document.getElementById('cep-status').textContent = '';
+});
+
 document.getElementById('cep').addEventListener('blur', (evento) => {
   autoCompletarEndereco(evento.target.value);
 });
@@ -149,11 +158,11 @@ document.getElementById('login').addEventListener('input', (evento) => {
 });
 
 document.getElementById('senha').addEventListener('input', (evento) => {
-  evento.target.value = evento.target.value.replace(/[^A-Za-z\d]/g, '').slice(0, 8);
+  evento.target.value = evento.target.value.replace(/[^A-Za-z]/g, '').slice(0, 8);
 });
 
 document.getElementById('confirmacao_senha').addEventListener('input', (evento) => {
-  evento.target.value = evento.target.value.replace(/[^A-Za-z\d]/g, '').slice(0, 8);
+  evento.target.value = evento.target.value.replace(/[^A-Za-z]/g, '').slice(0, 8);
 });
 
 function validarFormulario() {
@@ -189,11 +198,7 @@ function validarFormulario() {
   valido = marcarCampo('grupo-email', /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(valores.email)) && valido;
   valido = marcarCampo('grupo-celular', validarTelefoneFormato(valores.telefone_celular)) && valido;
 
-  if (valores.telefone_fixo) {
-    valido = marcarCampo('grupo-fixo', validarTelefoneFormato(valores.telefone_fixo)) && valido;
-  } else {
-    document.getElementById('grupo-fixo').classList.remove('invalido', 'valido');
-  }
+  valido = marcarCampo('grupo-fixo', validarTelefoneFormato(valores.telefone_fixo)) && valido;
 
   valido = marcarCampo('grupo-cep', valores.cep.replace(/\D/g, '').length === 8) && valido;
   valido = marcarCampo('grupo-numero', valores.numero.length > 0) && valido;

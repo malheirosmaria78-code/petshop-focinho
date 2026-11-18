@@ -43,11 +43,11 @@ function validarLogin(string $login): bool {
 }
 
 function validarSenha(string $senha): bool {
-    return (bool) preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8}$/', $senha);
+    return (bool) preg_match('/^[A-Za-z]{8}$/', $senha);
 }
 
 function validarTelefone(string $telefone): bool {
-    return (bool) preg_match('/^\(\+55\)\d{2}-\d{8,9}$/', $telefone);
+    return (bool) preg_match('/^\(\+55\)\d{2}-\d{8}$/', $telefone);
 }
 
 function validarNome(string $nome): bool {

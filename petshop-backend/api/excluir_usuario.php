@@ -13,14 +13,17 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 $dados = lerCorpoJson();
 
-if (empty($dados['id'])) {
+$idInformado = $dados['id'] ?? null;
+$id = (is_int($idInformado) || is_string($idInformado))
+    ? filter_var($idInformado, FILTER_VALIDATE_INT, ['options' => ['min_range' => 1]]) : false;
+if ($id === false) {
     responderJson(['sucesso' => false, 'mensagem' => 'ID do usuário é obrigatório'], 422);
 }
 
 $pdo = conectarBanco();
 
 $consulta = $pdo->prepare("SELECT id, perfil FROM usuarios WHERE id = ?");
-$consulta->execute([$dados['id']]);
+$consulta->execute([$id]);
 $usuario = $consulta->fetch();
 
 if (!$usuario) {
@@ -32,6 +35,6 @@ if ($usuario['perfil'] === 'master') {
 }
 
 $desativacao = $pdo->prepare("UPDATE usuarios SET ativo = 0, desativado_em = NOW() WHERE id = ? AND perfil = 'comum'");
-$desativacao->execute([$dados['id']]);
+$desativacao->execute([$id]);
 
 responderJson(['sucesso' => true, 'mensagem' => 'Usuário desativado com sucesso']);

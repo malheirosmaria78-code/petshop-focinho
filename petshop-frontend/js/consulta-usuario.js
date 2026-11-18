@@ -4,15 +4,15 @@ let acaoPendente = null;
 
 const TEXTOS_ACAO = {
   desativar: {
-    titulo: 'Desativar conta',
-    texto: (nome) => `Desativar a conta de ${nome}? A pessoa não conseguirá mais entrar, mas pedidos e histórico continuam guardados. Você pode reativar quando quiser.`,
-    botao: 'Desativar',
+    titulo: 'Excluir usuário',
+    texto: (nome) => `Excluir ${nome} da lista de usuários ativos? O acesso será bloqueado e o histórico será preservado. A conta poderá ser restaurada depois.`,
+    botao: 'Excluir',
     classe: 'botao-excluir',
   },
   reativar: {
-    titulo: 'Reativar conta',
-    texto: (nome) => `Reativar a conta de ${nome}? A pessoa poderá entrar no site normalmente.`,
-    botao: 'Reativar',
+    titulo: 'Restaurar usuário',
+    texto: (nome) => `Restaurar a conta de ${nome}? A pessoa poderá entrar no site novamente.`,
+    botao: 'Restaurar',
     classe: 'botao-primario',
   },
 
@@ -50,10 +50,10 @@ function renderizarTabela(usuarios) {
     const nome = escaparHtml(usuario.nome_completo);
     const rotuloStatus = ativo
       ? '<span class="badge badge-sucesso">Ativa</span>'
-      : '<span class="badge badge-falha">Desativada</span>';
+      : '<span class="badge badge-falha">Excluída</span>';
     const botaoStatus = ativo
-      ? `<button type="button" class="botao-tabela" data-acao="desativar" data-id="${usuario.id}" data-nome="${nome}">Desativar</button>`
-      : `<button type="button" class="botao-tabela" data-acao="reativar" data-id="${usuario.id}" data-nome="${nome}">Reativar</button>`;
+      ? `<button type="button" class="botao-tabela" data-acao="desativar" data-id="${usuario.id}" data-nome="${nome}">Excluir</button>`
+      : `<button type="button" class="botao-tabela" data-acao="reativar" data-id="${usuario.id}" data-nome="${nome}">Restaurar</button>`;
 
 
     const linha = document.createElement('tr');
@@ -111,7 +111,10 @@ document.getElementById('modal-confirmar').addEventListener('click', async () =>
       body: JSON.stringify(corpo),
     });
     const dados = await resposta.json();
-    mostrarAviso(dados.mensagem || (dados.sucesso ? 'Feito' : 'Não foi possível concluir a ação'));
+    mostrarAviso(dados.sucesso
+      ? (tipo === 'reativar' ? 'Usuário restaurado com sucesso' : 'Usuário excluído da lista de ativos')
+      : (dados.mensagem || 'Não foi possível concluir a ação'));
+    // A operação continua sendo exclusão lógica no servidor.
     if (dados.sucesso) buscarUsuarios();
   } catch (falha) {
     mostrarAviso('Falha de conexão com o servidor');

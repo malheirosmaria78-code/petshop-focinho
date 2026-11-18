@@ -11,8 +11,14 @@ if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
     responderJson(['sucesso' => false, 'mensagem' => 'Método não permitido'], 405);
 }
 
+if (isset($_GET['busca']) && !is_string($_GET['busca'])) {
+    responderJson(['sucesso' => false, 'mensagem' => 'Busca inválida'], 422);
+}
 $busca = trim($_GET['busca'] ?? '');
 $status = $_GET['status'] ?? 'todos'; // todos | ativos | desativados
+if (!is_string($status) || !in_array($status, ['todos', 'ativos', 'desativados'], true)) {
+    responderJson(['sucesso' => false, 'mensagem' => 'Filtro de status inválido'], 422);
+}
 
 $sql = "SELECT u.id, u.nome_completo, u.cpf, u.email, u.login, u.criado_em, u.ativo, u.desativado_em,
                (SELECT COUNT(*) FROM pedidos p WHERE p.usuario_id = u.id) AS total_pedidos

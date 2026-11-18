@@ -10,7 +10,7 @@ CREATE TABLE usuarios (
     cpf CHAR(11) NOT NULL UNIQUE,
     email VARCHAR(150) NOT NULL,
     telefone_celular VARCHAR(20) NOT NULL,
-    telefone_fixo VARCHAR(20) NULL,
+    telefone_fixo VARCHAR(20) NOT NULL,
     cep CHAR(8) NOT NULL,
     logradouro VARCHAR(150) NOT NULL,
     numero VARCHAR(10) NOT NULL,
@@ -31,12 +31,12 @@ CREATE TABLE usuarios (
 
 INSERT INTO usuarios (
     nome_completo, data_nascimento, sexo, nome_materno, cpf, email,
-    telefone_celular, cep, logradouro, numero, bairro, cidade, uf,
+    telefone_celular, telefone_fixo, cep, logradouro, numero, bairro, cidade, uf,
     login, senha_hash, resposta_nome_mae, resposta_data_nascimento, resposta_cep, perfil
 ) VALUES (
     'Administrador do Sistema Pet Shop', '1990-01-01', 'Outro', 'Nao Informado', '00000000191', 'admin@petshop.local',
-    '(+55)21-999999999', '20000000', 'Sede Administrativa', '1', 'Centro', 'Rio de Janeiro', 'RJ',
-    'master', '$2y$12$YXaQgT4yusnJ/R1EI7dTfe.KCZOnXdCC2R83G60xs/p8PwrPOQJIi', 'Nao Informado', '1990-01-01', '20000000', 'master'
+    '(+55)21-35550000', '(+55)21-35550000', '20000000', 'Sede Administrativa', '1', 'Centro', 'Rio de Janeiro', 'RJ',
+    'master', '$2y$12$dnKlLptA/hjOB99m24cpFeqPT.DRvX3/a/KpiksKd2sL42wVAXukC', 'Nao Informado', '1990-01-01', '20000000', 'master'
 );
 
 CREATE TABLE log_autenticacao (

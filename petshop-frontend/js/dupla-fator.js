@@ -54,6 +54,18 @@ document.getElementById('form-2fa').addEventListener('submit', async (evento) =>
       return;
     }
 
+    if (!Number.isInteger(dados.tentativas_restantes)) {
+      const mensagem = dados.mensagem || 'Não foi possível verificar a autenticação.';
+      if (chamada.status === 401 || chamada.status === 403) {
+        sessionStorage.setItem('avisoSessao', mensagem);
+        window.location.href = 'login.html';
+      } else {
+        erroGeral.textContent = mensagem;
+        erroGeral.classList.add('mostrar');
+      }
+      return;
+    }
+
     tentativasUsadas += 1;
     atualizarPontosTentativas();
     erroGeral.textContent = `Resposta incorreta — ${dados.tentativas_restantes} tentativa(s) restante(s).`;

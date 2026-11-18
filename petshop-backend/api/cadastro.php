@@ -13,7 +13,7 @@ $dados = lerCorpoJson();
 
 $camposObrigatorios = [
     'nome_completo', 'data_nascimento', 'sexo', 'nome_materno', 'cpf', 'email',
-    'telefone_celular', 'cep', 'logradouro', 'numero', 'bairro', 'cidade', 'uf',
+    'telefone_celular', 'telefone_fixo', 'cep', 'logradouro', 'numero', 'bairro', 'cidade', 'uf',
     'login', 'senha', 'confirmacao_senha',
 ];
 
@@ -24,7 +24,7 @@ foreach ($camposObrigatorios as $campo) {
     }
 }
 
-foreach (['telefone_fixo', 'complemento'] as $campo) {
+foreach (['complemento'] as $campo) {
     if (isset($dados[$campo]) && (!is_string($dados[$campo]) || str_contains($dados[$campo], "\0"))) {
         responderJson(['sucesso' => false, 'mensagem' => "Campo inválido: {$campo}"], 422);
     }
@@ -57,7 +57,7 @@ if (!validarTelefone($dados['telefone_celular'])) {
     responderJson(['sucesso' => false, 'mensagem' => 'Telefone celular deve seguir o formato (+55)XX-XXXXXXXX'], 422);
 }
 
-if (!empty($dados['telefone_fixo']) && !validarTelefone($dados['telefone_fixo'])) {
+if (!validarTelefone($dados['telefone_fixo'])) {
     responderJson(['sucesso' => false, 'mensagem' => 'Telefone fixo deve seguir o formato (+55)XX-XXXXXXXX'], 422);
 }
 
@@ -66,7 +66,7 @@ if (!validarLogin($dados['login'])) {
 }
 
 if (!validarSenha($dados['senha'])) {
-    responderJson(['sucesso' => false, 'mensagem' => 'Senha deve ter exatamente 8 caracteres, com letra maiúscula, minúscula e número'], 422);
+    responderJson(['sucesso' => false, 'mensagem' => 'Senha deve ter exatamente 8 letras'], 422);
 }
 
 if ($dados['senha'] !== $dados['confirmacao_senha']) {
