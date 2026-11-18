@@ -333,11 +333,12 @@ button, input {
 
 .produtos-grade {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(230px, 100%), 1fr));
   gap: 1.2rem;
 }
 
 .produto-card {
+  min-width: 0;
   background: var(--superficie);
   border: 1px solid var(--linha);
   border-radius: 10px;
@@ -381,18 +382,22 @@ button, input {
 
 .produto-rodape {
   display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
   align-items: center;
   justify-content: space-between;
   margin-top: 0.4rem;
 }
 
 .produto-preco {
+  white-space: nowrap;
   font-weight: 600;
   color: var(--pinho);
   font-size: 1.05rem;
 }
 
 .produto-card button {
+  max-width: 100%;
   border: 1px solid var(--pinho);
   background: none;
   color: var(--pinho);
@@ -1153,6 +1158,7 @@ table.tabela-dados tr:last-child td {
 
 .abas-conta {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.4rem;
   border-bottom: 1px solid var(--linha);
   margin-bottom: 1.8rem;

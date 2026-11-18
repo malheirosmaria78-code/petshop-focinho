@@ -30,6 +30,21 @@ function validarSenhaFormato(valor) {
   return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8}$/.test(valor);
 }
 
+function validarDataNascimento(valor) {
+  const partes = /^([1-9]\d{3})-(\d{2})-(\d{2})$/.exec(valor);
+  if (!partes) return false;
+
+  const [, ano, mes, dia] = partes.map(Number);
+  const nascimento = new Date(ano, mes - 1, dia);
+  const hoje = new Date();
+  hoje.setHours(0, 0, 0, 0);
+
+  return nascimento.getFullYear() === ano
+    && nascimento.getMonth() === mes - 1
+    && nascimento.getDate() === dia
+    && nascimento < hoje;
+}
+
 function marcarCampo(idGrupo, valido) {
   const grupo = document.getElementById(idGrupo);
   grupo.classList.remove('valido', 'invalido');
@@ -105,6 +120,26 @@ mascararTelefone(document.getElementById('telefone_fixo'));
 mascararCep(document.getElementById('cep'));
 mascararCpf(document.getElementById('cpf'));
 
+const campoNascimento = document.getElementById('data_nascimento');
+const ontem = new Date();
+ontem.setDate(ontem.getDate() - 1);
+campoNascimento.max = [
+  ontem.getFullYear(),
+  String(ontem.getMonth() + 1).padStart(2, '0'),
+  String(ontem.getDate()).padStart(2, '0'),
+].join('-');
+
+function limitarAnoNascimento() {
+  // O controle nativo de data ignora maxlength e pode aceitar anos estendidos.
+  const partes = /^(\d{5,})-(\d{2})-(\d{2})$/.exec(campoNascimento.value);
+  if (partes) {
+    campoNascimento.value = `${partes[1].slice(0, 4)}-${partes[2]}-${partes[3]}`;
+  }
+}
+
+campoNascimento.addEventListener('input', limitarAnoNascimento);
+campoNascimento.addEventListener('change', limitarAnoNascimento);
+
 document.getElementById('cep').addEventListener('blur', (evento) => {
   autoCompletarEndereco(evento.target.value);
 });
@@ -146,8 +181,7 @@ function validarFormulario() {
   let valido = true;
   valido = marcarCampo('grupo-nome', validarNome(valores.nome_completo)) && valido;
 
-  const dataValida = valores.data_nascimento && new Date(valores.data_nascimento) < new Date();
-  valido = marcarCampo('grupo-nascimento', Boolean(dataValida)) && valido;
+  valido = marcarCampo('grupo-nascimento', validarDataNascimento(valores.data_nascimento)) && valido;
 
   valido = marcarCampo('grupo-sexo', Boolean(valores.sexo)) && valido;
   valido = marcarCampo('grupo-mae', valores.nome_materno.length > 0) && valido;
