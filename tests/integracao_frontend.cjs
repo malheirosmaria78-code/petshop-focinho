@@ -66,6 +66,37 @@ let total=0;function ok(v,msg){if(!v)throw Error(msg);console.log('OK: '+msg);to
   for(const width of [360,768,1280])for(const scale of [1,1.4]){await p.setViewportSize({width,height:900});await p.evaluate(s=>document.documentElement.style.setProperty('--escala-fonte',s),scale);ok(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Minha conta sem overflow '+width+'px / fonte '+scale);}
   await p.locator('#alternar-contraste').click();ok(await p.locator('html').getAttribute('data-contraste')==='alto','Contraste funciona');
   await p.goto(front+'alterar-senha.html');await p.locator('#senha_atual').pressSequentially('Senha1234!Legada');ok(await p.locator('#senha_atual').inputValue()==='Senha1234!Legada','Pagina de alterar senha preserva senha atual longa');
+  const banners = await context.newPage();
+  banners.on('pageerror', e => errors.push(e.message));
+  await banners.clock.install();
+  await banners.emulateMedia({reducedMotion:'reduce'});
+  await banners.goto(front+'index.html');
+  await banners.mouse.move(0,0);
+  const ativo = () => banners.locator('.banner-slide.ativo').getAttribute('aria-label');
+  ok(await ativo()==='1 de 2','Carrossel inicia no primeiro banner');
+  await banners.clock.fastForward(6100);
+  ok(await ativo()==='2 de 2','Carrossel avanca com movimento reduzido');
+  await banners.clock.fastForward(6100);
+  ok(await ativo()==='1 de 2','Carrossel volta ao inicio');
+  await banners.locator('[data-banners]').hover();
+  await banners.clock.fastForward(6100);
+  ok(await ativo()==='1 de 2','Mouse sobre banner pausa a troca');
+  await banners.locator('.banner-seta-proximo').focus();
+  await banners.mouse.move(0,0);
+  await banners.clock.fastForward(6100);
+  ok(await ativo()==='1 de 2','Sair com mouse mantem pausa enquanto teclado tem foco');
+  await banners.locator('.banner-seta-proximo').press('Enter');
+  ok(await ativo()==='2 de 2','Seta avanca manualmente');
+  await banners.locator('[data-banners]').hover();
+  await banners.locator('.banner-seta-proximo').evaluate(e=>e.blur());
+  await banners.clock.fastForward(6100);
+  ok(await ativo()==='2 de 2','Retirar foco mantem pausa enquanto mouse permanece');
+  await banners.mouse.move(0,0);
+  await banners.clock.fastForward(6100);
+  ok(await ativo()==='1 de 2','Carrossel retoma apos sair com mouse e foco');
+  await banners.locator('.banner-ponto').nth(1).click();
+  ok(await ativo()==='2 de 2','Indicador seleciona o banner');
+  await banners.close();
   ok(errors.length===0,'Nenhum erro JavaScript nas telas testadas: '+errors.join('; '));
   console.log('TOTAL UI: '+total+' verificacoes aprovadas.');
  } finally {if(browser)await browser.close();php.kill();}

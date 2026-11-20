@@ -20,4 +20,3 @@ function conectarBanco(): PDO {
         exit;
     }
 }
-

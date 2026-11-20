@@ -133,9 +133,7 @@ O objetivo principal do projeto é praticar a integração entre frontend, backe
 
 O projeto ainda está em desenvolvimento e algumas partes podem sofrer alterações ou melhorias.
 
-As proximas features planejadas estao em [ROADMAP.md](ROADMAP.md).
+## Atualização de bancos existentes
 
-## Integracao da versao recebida em ZIP
-
-Consulte [INTEGRACAO.md](INTEGRACAO.md) para as decisoes, atualizacao do banco
-e pendencias. As imagens serao consolidadas na ultima etapa.
+Consulte [INTEGRACAO.md](INTEGRACAO.md) para atualizar contas, catálogo e caminhos
+das fotos sem recriar o banco.
