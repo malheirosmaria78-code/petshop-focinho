@@ -44,14 +44,14 @@
 <main>
   <div class="pagina-conteudo">
     <h1>Consulta de usuários</h1>
-    <p class="subtitulo">Busque por parte do nome do usuário comum. Contas desativadas não entram no site, mas o histórico de pedidos fica preservado. Apenas o perfil master vê esta página.</p>
+    <p class="subtitulo">Busque por parte do nome do usuário comum. A exclusão bloqueia o acesso e preserva o histórico de pedidos. Apenas o perfil master vê esta página.</p>
 
     <div class="barra-filtro">
       <input type="search" id="busca-usuario" placeholder="Buscar por nome...">
       <select id="filtro-status" aria-label="Filtrar por status da conta">
-        <option value="todos">Todas as contas</option>
-        <option value="ativos">Somente ativas</option>
-        <option value="desativados">Somente desativadas</option>
+        <option value="ativos" selected>Usuários ativos</option>
+        <option value="desativados">Usuários excluídos</option>
+        <option value="todos">Todos os registros</option>
       </select>
       <button type="button" class="botao-primario" id="botao-baixar-pdf" style="flex: none;">Baixar lista em PDF</button>
     </div>

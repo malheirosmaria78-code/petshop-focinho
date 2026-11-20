@@ -40,19 +40,23 @@ document.getElementById('form-login').addEventListener('submit', async (evento) 
     const dados = await resposta.json();
 
     if (!resposta.ok || !dados.sucesso) {
-      erroGeral.textContent = dados.mensagem || 'Login ou senha inválidos.';
-      erroGeral.classList.add('mostrar');
+      window.location.href = `erro.html?origem=login&mensagem=${encodeURIComponent(dados.mensagem || 'Login ou senha inválidos.')}`;
       return;
     }
 
+    sessionStorage.removeItem('ultimoPedido');
     sessionStorage.setItem('pergunta2fa', dados.pergunta_2fa);
     sessionStorage.setItem('pergunta2faTexto', dados.pergunta_2fa_texto);
     window.location.href = 'dupla-fator.html';
   } catch (falha) {
-    erroGeral.textContent = 'Falha de conexão com o servidor. Tente novamente.';
-    erroGeral.classList.add('mostrar');
+    window.location.href = `erro.html?origem=login&mensagem=${encodeURIComponent('Falha de conexão com o servidor. Tente novamente.')}`;
   } finally {
     botao.disabled = false;
     botao.textContent = 'Entrar';
   }
+});
+
+document.getElementById('form-login').addEventListener('reset', () => {
+  document.querySelectorAll('.campo-grupo').forEach((grupo) => grupo.classList.remove('valido', 'invalido'));
+  document.getElementById('erro-geral').classList.remove('mostrar');
 });

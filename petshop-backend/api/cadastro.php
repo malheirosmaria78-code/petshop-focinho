@@ -13,13 +13,31 @@ $dados = lerCorpoJson();
 
 $camposObrigatorios = [
     'nome_completo', 'data_nascimento', 'sexo', 'nome_materno', 'cpf', 'email',
-    'telefone_celular', 'cep', 'logradouro', 'numero', 'bairro', 'cidade', 'uf',
+    'telefone_celular', 'telefone_fixo', 'cep', 'logradouro', 'numero', 'bairro', 'cidade', 'uf',
     'login', 'senha', 'confirmacao_senha',
 ];
 
 foreach ($camposObrigatorios as $campo) {
-    if (empty($dados[$campo])) {
-        responderJson(['sucesso' => false, 'mensagem' => "Campo obrigatório ausente: {$campo}"], 422);
+    if (!isset($dados[$campo]) || !is_string($dados[$campo])
+        || trim($dados[$campo]) === '' || str_contains($dados[$campo], "\0")) {
+        responderJson(['sucesso' => false, 'mensagem' => "Campo obrigatório inválido: {$campo}"], 422);
+    }
+}
+
+foreach (['complemento'] as $campo) {
+    if (isset($dados[$campo]) && (!is_string($dados[$campo]) || str_contains($dados[$campo], "\0"))) {
+        responderJson(['sucesso' => false, 'mensagem' => "Campo inválido: {$campo}"], 422);
+    }
+}
+
+// Os limites do banco devem ser verificados antes de tentar gravar.
+foreach ([
+    'nome_completo' => 80, 'nome_materno' => 80, 'email' => 150,
+    'telefone_celular' => 20, 'telefone_fixo' => 20, 'logradouro' => 150,
+    'numero' => 10, 'complemento' => 100, 'bairro' => 100, 'cidade' => 100,
+] as $campo => $limite) {
+    if (isset($dados[$campo]) && mb_strlen($dados[$campo]) > $limite) {
+        responderJson(['sucesso' => false, 'mensagem' => "Campo {$campo} excede {$limite} caracteres"], 422);
     }
 }
 
@@ -39,7 +57,7 @@ if (!validarTelefone($dados['telefone_celular'])) {
     responderJson(['sucesso' => false, 'mensagem' => 'Telefone celular deve seguir o formato (+55)XX-XXXXXXXX'], 422);
 }
 
-if (!empty($dados['telefone_fixo']) && !validarTelefone($dados['telefone_fixo'])) {
+if (!validarTelefone($dados['telefone_fixo'])) {
     responderJson(['sucesso' => false, 'mensagem' => 'Telefone fixo deve seguir o formato (+55)XX-XXXXXXXX'], 422);
 }
 
@@ -48,11 +66,38 @@ if (!validarLogin($dados['login'])) {
 }
 
 if (!validarSenha($dados['senha'])) {
-    responderJson(['sucesso' => false, 'mensagem' => 'Senha deve ter exatamente 8 caracteres, com letra maiúscula, minúscula e número'], 422);
+    responderJson(['sucesso' => false, 'mensagem' => 'Senha deve ter exatamente 8 letras'], 422);
 }
 
 if ($dados['senha'] !== $dados['confirmacao_senha']) {
     responderJson(['sucesso' => false, 'mensagem' => 'Senha e confirmação não conferem'], 422);
+}
+
+$fuso = new DateTimeZone('America/Sao_Paulo');
+$nascimento = DateTimeImmutable::createFromFormat('!Y-m-d', $dados['data_nascimento'], $fuso);
+if (!$nascimento || $nascimento->format('Y-m-d') !== $dados['data_nascimento']
+    || $nascimento < new DateTimeImmutable('1000-01-01', $fuso)
+    || $nascimento >= new DateTimeImmutable('today', $fuso)) {
+    responderJson(['sucesso' => false, 'mensagem' => 'Informe uma data de nascimento válida e anterior a hoje'], 422);
+}
+
+if (!in_array($dados['sexo'], ['M', 'F', 'Outro'], true)) {
+    responderJson(['sucesso' => false, 'mensagem' => 'Selecione uma opção de sexo válida'], 422);
+}
+
+$dados['cep'] = trim($dados['cep']);
+if (!preg_match('/\A[0-9]{5}-?[0-9]{3}\z/', $dados['cep'])) {
+    responderJson(['sucesso' => false, 'mensagem' => 'CEP deve conter oito dígitos'], 422);
+}
+
+$dados['uf'] = strtoupper(trim($dados['uf']));
+$ufs = [
+    'AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO',
+    'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI',
+    'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO',
+];
+if (!in_array($dados['uf'], $ufs, true)) {
+    responderJson(['sucesso' => false, 'mensagem' => 'Informe uma UF brasileira válida'], 422);
 }
 
 $cpfLimpo = preg_replace('/[^0-9]/', '', $dados['cpf']);

@@ -33,11 +33,11 @@ try {
     $pdo->beginTransaction();
     $inserirCategoria = $pdo->prepare('INSERT INTO categorias (nome) VALUES (?) ON DUPLICATE KEY UPDATE id = id');
     $buscarCategoria = $pdo->prepare('SELECT id FROM categorias WHERE nome = ?');
-    $buscarProduto = $pdo->prepare('SELECT id FROM produtos WHERE nome = ?');
+    $buscarProduto = $pdo->prepare('SELECT id, imagem FROM produtos WHERE nome = ?');
     $inserirProduto = $pdo->prepare('INSERT INTO produtos
         (categoria_id, descricao, preco, imagem, especie_indicada, nome) VALUES (?, ?, ?, ?, ?, ?)');
     $atualizarProduto = $pdo->prepare("UPDATE produtos SET categoria_id = ?, descricao = ?, preco = ?,
-        imagem = CASE WHEN imagem LIKE 'assets/%' THEN imagem ELSE ? END,
+        imagem = ?,
         especie_indicada = ? WHERE nome = ?");
 
     foreach ($itens as $item) {
@@ -45,9 +45,16 @@ try {
         $buscarCategoria->execute([$item['categoria']]);
         $idCategoria = $buscarCategoria->fetchColumn();
         $buscarProduto->execute([$item['nome']]);
-        $dados = [$idCategoria, $item['descricao'], $item['preco'], $item['imagem'],
+        $existente = $buscarProduto->fetch();
+        // Preserva fotos locais existentes; caminhos sem arquivo seguem o schema.
+        $imagem = $item['imagem'];
+        if ($existente && str_starts_with($existente['imagem'] ?? '', 'assets/')
+            && is_file(__DIR__ . '/../../petshop-frontend/' . $existente['imagem'])) {
+            $imagem = $existente['imagem'];
+        }
+        $dados = [$idCategoria, $item['descricao'], $item['preco'], $imagem,
                   $item['especie_indicada'], $item['nome']];
-        if ($buscarProduto->fetchColumn() === false) {
+        if (!$existente) {
             $inserirProduto->execute($dados);
         } else {
             $atualizarProduto->execute($dados);

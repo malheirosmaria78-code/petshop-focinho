@@ -11,7 +11,9 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 $dados = lerCorpoJson();
 
-if (empty($dados['login']) || empty($dados['senha'])) {
+if (!isset($dados['login'], $dados['senha'])
+    || !is_string($dados['login']) || !is_string($dados['senha'])
+    || trim($dados['login']) === '' || $dados['senha'] === '') {
     responderJson(['sucesso' => false, 'mensagem' => 'Login e senha são obrigatórios'], 422);
 }
 

@@ -13,7 +13,10 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 $dados = lerCorpoJson();
 
-if (empty($dados['id']) || !isset($dados['ativo'])) {
+$idInformado = $dados['id'] ?? null;
+$id = (is_int($idInformado) || is_string($idInformado))
+    ? filter_var($idInformado, FILTER_VALIDATE_INT, ['options' => ['min_range' => 1]]) : false;
+if ($id === false || !isset($dados['ativo'])) {
     responderJson(['sucesso' => false, 'mensagem' => 'Informe o usuário e o novo status'], 422);
 }
 
@@ -25,7 +28,7 @@ $ativar = $dados['ativo'];
 $pdo = conectarBanco();
 
 $consulta = $pdo->prepare('SELECT id, perfil FROM usuarios WHERE id = ?');
-$consulta->execute([$dados['id']]);
+$consulta->execute([$id]);
 $usuario = $consulta->fetch();
 
 if (!$usuario) {
@@ -39,7 +42,7 @@ if ($usuario['perfil'] === 'master') {
 $atualizacao = $pdo->prepare(
     'UPDATE usuarios SET ativo = ?, desativado_em = ' . ($ativar ? 'NULL' : 'NOW()') . ' WHERE id = ?'
 );
-$atualizacao->execute([$ativar ? 1 : 0, $dados['id']]);
+$atualizacao->execute([$ativar ? 1 : 0, $id]);
 
 responderJson([
     'sucesso' => true,

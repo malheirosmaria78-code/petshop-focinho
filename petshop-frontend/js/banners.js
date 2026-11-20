@@ -18,11 +18,10 @@
   const botaoAnterior = raiz.querySelector('.banner-seta-anterior');
   const botaoProximo = raiz.querySelector('.banner-seta-proximo');
   const intervalo = parseInt(raiz.dataset.intervalo, 10) || 6000;
-  const reduzMovimento = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
   let atual = 0;
   let temporizador = null;
-  let pausado = false;
+  let mouseSobre = false;
+  let focoDentro = false;
   let inicioToque = null;
 
   function exibir(indice) {
@@ -54,7 +53,7 @@
 
   function iniciar() {
     parar();
-    if (reduzMovimento || pausado || slides.length < 2) return;
+    if (mouseSobre || focoDentro || document.hidden || slides.length < 2) return;
     temporizador = window.setInterval(() => exibir(atual + 1), intervalo);
   }
 
@@ -67,23 +66,14 @@
   if (botaoProximo) botaoProximo.addEventListener('click', () => irPara(atual + 1));
   pontos.forEach((ponto, posicao) => ponto.addEventListener('click', () => irPara(posicao)));
 
-  raiz.addEventListener('mouseenter', () => {
-    pausado = true;
-    parar();
-  });
-  raiz.addEventListener('mouseleave', () => {
-    pausado = false;
+  // Mouse e teclado são condições independentes de pausa.
+  raiz.addEventListener('mouseenter', () => { mouseSobre = true; parar(); });
+  raiz.addEventListener('mouseleave', () => { mouseSobre = false; iniciar(); });
+  raiz.addEventListener('focusin', () => { focoDentro = true; parar(); });
+  raiz.addEventListener('focusout', (evento) => {
+    focoDentro = raiz.contains(evento.relatedTarget);
     iniciar();
   });
-  raiz.addEventListener('focusin', () => {
-    pausado = true;
-    parar();
-  });
-  raiz.addEventListener('focusout', () => {
-    pausado = false;
-    iniciar();
-  });
-
   raiz.addEventListener('touchstart', (evento) => {
     inicioToque = evento.touches[0].clientX;
   }, { passive: true });

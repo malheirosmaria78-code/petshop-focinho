@@ -60,8 +60,8 @@
           </div>
           <div class="campo-grupo" id="grupo-nascimento">
             <label for="data_nascimento">Data de nascimento</label>
-            <input type="date" id="data_nascimento" name="data_nascimento">
-            <p class="campo-erro">Informe uma data válida no passado.</p>
+            <input type="date" id="data_nascimento" name="data_nascimento" min="1000-01-01" max="9999-12-31" autocomplete="bday">
+            <p class="campo-erro">Informe uma data anterior a hoje, com ano de quatro dígitos.</p>
           </div>
         </div>
 
@@ -100,12 +100,12 @@
         <div class="form-linha">
           <div class="campo-grupo" id="grupo-celular">
             <label for="telefone_celular">Telefone celular</label>
-            <input type="text" id="telefone_celular" name="telefone_celular" placeholder="(+55)21-999999999">
+            <input type="text" id="telefone_celular" name="telefone_celular" placeholder="(+55)21-35550000">
             <p class="campo-erro">Use o formato (+55)XX-XXXXXXXX.</p>
           </div>
           <div class="campo-grupo" id="grupo-fixo">
-            <label for="telefone_fixo">Telefone fixo (opcional)</label>
-            <input type="text" id="telefone_fixo" name="telefone_fixo" placeholder="(+55)21-35550000">
+            <label for="telefone_fixo">Telefone fixo</label>
+            <input type="text" id="telefone_fixo" name="telefone_fixo" required placeholder="(+55)21-35550000">
             <p class="campo-erro">Use o formato (+55)XX-XXXXXXXX.</p>
           </div>
         </div>
@@ -168,8 +168,7 @@
           <div class="campo-grupo" id="grupo-senha">
             <label for="senha">Senha</label>
             <input type="password" id="senha" name="senha" maxlength="8" autocomplete="new-password">
-            <p class="campo-erro">Use 8 caracteres, com letra maiúscula, minúscula e número.</p>
-          <p class="campo-erro">Use 8 caracteres, com letra maiúscula, minúscula e número.</p>
+            <p class="campo-erro">Use 8 letras.</p>
           </div>
           <div class="campo-grupo" id="grupo-confirmacao">
             <label for="confirmacao_senha">Confirmar senha</label>

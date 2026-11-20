@@ -249,13 +249,14 @@ function renderizarAreaConta(usuario) {
 
   area.innerHTML = `
     <div class="conta-usuario">
-      <span class="conta-nome">${usuario.nome_completo.split(' ')[0]}</span>
+      <span class="conta-nome">${escaparHtml(usuario.login)}</span>
       <button type="button" class="conta-sair" id="botao-sair">Sair</button>
     </div>
   `;
   montarMenu(usuario);
 
   document.getElementById('botao-sair').addEventListener('click', async () => {
+    sessionStorage.removeItem('ultimoPedido');
     try {
       await fetch(`${API_BASE}/logout.php`, { method: 'POST', credentials: 'include' });
     } catch (falha) {
@@ -270,6 +271,7 @@ async function carregarSessao() {
   try {
     const resposta = await fetch(`${API_BASE}/perfil.php`, { credentials: 'include' });
     if (!resposta.ok) {
+      if (resposta.status === 401) sessionStorage.removeItem('ultimoPedido');
       try {
         const falha = await resposta.json();
         if (falha.expirada || falha.sessao_encerrada) {
@@ -288,6 +290,12 @@ async function carregarSessao() {
     renderizarAreaConta(null);
     return null;
   }
+}
+
+function exigirSessaoNaPagina() {
+  carregarSessao().then((usuario) => {
+    if (!usuario) window.location.href = 'login.html';
+  });
 }
 
 function exigirPerfilNaPagina(perfilExigido) {

@@ -17,7 +17,7 @@ if (empty($_SESSION['usuario_id']) || empty($_SESSION['pergunta_2fa'])) {
 
 $dados = lerCorpoJson();
 
-if (!isset($dados['resposta']) || trim($dados['resposta']) === '') {
+if (!isset($dados['resposta']) || !is_string($dados['resposta']) || trim($dados['resposta']) === '') {
     responderJson(['sucesso' => false, 'mensagem' => 'A resposta é obrigatória'], 422);
 }
 
