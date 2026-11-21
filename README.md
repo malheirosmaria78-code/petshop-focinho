@@ -47,16 +47,16 @@ O frontend encontra a API automaticamente, sem fixar nome da pasta, domínio ou 
 
 1. Coloque a pasta do projeto dentro de `C:\xampp\htdocs`.
 2. Inicie **Apache** e **MySQL** no painel do XAMPP.
-3. Na primeira configuração, importe `petshop-backend/sql/schema.sql` pelo phpMyAdmin. Não precisa importar novamente a cada execução.
+3. Na primeira configuração, prepare o banco com o instalador abaixo. Se preferir, importe `petshop-backend/sql/schema.sql` pelo phpMyAdmin em um banco vazio.
 4. Acesse `http://localhost/NOME-DA-PASTA/petshop-frontend/`, substituindo `NOME-DA-PASTA` pelo nome da pasta dentro de `htdocs`.
 
 ### Linux com PHP e MySQL instalados
 
 1. Inicie o MySQL: `sudo service mysql start`.
-2. Na primeira configuração, importe o banco a partir da pasta principal do projeto:
+2. Na primeira configuração, prepare o banco a partir da pasta principal do projeto:
 
    ```bash
-   mysql -u root -p < petshop-backend/sql/schema.sql
+   php petshop-backend/scripts/instalar_banco.php
    ```
 
 3. Na pasta principal (que contém frontend e backend), inicie:
@@ -67,7 +67,43 @@ O frontend encontra a API automaticamente, sem fixar nome da pasta, domínio ou 
 
 4. Acesse `http://localhost:8000/petshop-frontend/`. Deixe o terminal aberto; use `Ctrl+C` para encerrar.
 
-O PHP precisa da extensão `pdo_mysql`. Não é necessário iniciar outro servidor para o frontend ou usar Live Server.
+O PHP precisa das extensões `pdo_mysql` e `mbstring` (usada nas validações). Não é necessário iniciar outro servidor para o frontend ou usar Live Server.
+
+### Preparar o banco em um comando
+
+Para não precisar executar cada atualização separadamente, o instalador reúne a
+criação das tabelas, a atualização das contas e a sincronização do catálogo.
+Na pasta principal do projeto, digite o comando e pressione Enter.
+
+Linux:
+
+```bash
+php petshop-backend/scripts/instalar_banco.php
+```
+
+Windows com XAMPP, no PowerShell:
+
+```powershell
+C:\xampp\php\php.exe petshop-backend/scripts/instalar_banco.php
+```
+
+O comando `php` executa o script indicado. O MySQL precisa estar ligado.
+Se `PETSHOP_DB_PASSWORD` não estiver definida, ele pede a senha do MySQL;
+a digitação fica **visível** nesse terminal. No XAMPP sem senha, basta Enter.
+Essa não é a senha da conta do site. O resultado esperado é
+“Banco petshop preparado”. Não precisa executar toda vez que abrir o projeto.
+
+Em banco novo, são criadas seis tabelas, o master e os 38 produtos. Em banco
+existente, faça backup antes: o instalador completa tabelas ausentes, atualiza
+as regras de contas e sincroniza o catálogo sem trocar IDs nem apagar pedidos.
+O preço e a descrição dos produtos do catálogo passam a seguir o schema; fotos
+locais existentes e produtos extras são preservados. O master já cadastrado
+mantém a senha. Não é uma ferramenta para corrigir qualquer estrutura de banco:
+as tabelas antigas precisam ter as colunas básicas do projeto.
+
+O MySQL confirma mudanças de estrutura por etapa. Se houver erro, parte do
+trabalho pode ter sido aplicada; leia a mensagem, corrija a causa e execute de
+novo. A instalação pode ser repetida sem duplicar o catálogo.
 
 ### Credenciais locais do banco
 

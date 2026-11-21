@@ -94,11 +94,80 @@ def ficha(login='comumx', numero=123456789):
         login=login, senha='abcdefgh', confirmacao_senha='abcdefgh')
 
 
+def testar_instalador():
+    fallback = REPO / 'petshop-frontend/js/produtos-fallback.js'
+    original = fallback.read_bytes()
+    schema = (REPO / 'petshop-backend/sql/schema.sql').read_text()
+
+    def instalar(falha=False):
+        resultado = subprocess.run(['php', '-d', 'pdo_mysql.default_socket=' + SOCKET,
+            str(REPO / 'petshop-backend/scripts/instalar_banco.php')],
+            env=ENV, text=True, capture_output=True)
+        conferir((resultado.returncode != 0) if falha else (resultado.returncode == 0),
+            'Instalador recusa conflito' if falha else 'Instalador conclui sem erros: ' + resultado.stderr.strip())
+        return resultado
+
+    try:
+        sql('DROP DATABASE IF EXISTS petshop;')
+        instalar()
+        conferir(len(sql('SHOW TABLES FROM petshop').splitlines()) == 6, 'Instalador cria seis tabelas')
+        conferir(sql('SELECT COUNT(*) FROM petshop.produtos') == '38', 'Instalador carrega 38 produtos')
+        mestre = sql("SELECT id, senha_hash FROM petshop.usuarios WHERE perfil='master'")
+        instalar()
+        conferir(sql('SELECT COUNT(*) FROM petshop.produtos') == '38', 'Repetir instalacao nao duplica produtos')
+        conferir(sql("SELECT id, senha_hash FROM petshop.usuarios WHERE perfil='master'") == mestre,
+            'Repetir instalacao preserva ID e senha master')
+
+        # Simula catalogo com IDs diferentes, foto local personalizada e pedido existente.
+        sql("""USE petshop;
+            INSERT INTO categorias (id,nome) VALUES (90,'Categoria extra');
+            INSERT INTO produtos (id,categoria_id,nome,descricao,preco,imagem)
+                VALUES (900,90,'Produto extra','Teste',9.90,'assets/extra.jpg');
+            UPDATE produtos SET id=800, imagem='https://exemplo.invalid/antiga.jpg' WHERE id=1;
+            UPDATE produtos SET imagem='assets/banners/banho-e-tosa.jpg' WHERE id=2;
+            UPDATE usuarios SET senha_hash='hash-anterior-preservado' WHERE perfil='master';
+            INSERT INTO pedidos (usuario_id,numero_pedido,subtotal,entrega,total,forma_pagamento)
+                SELECT id,'TESTE-INSTALADOR',9.90,0,9.90,'pix' FROM usuarios WHERE perfil='master' LIMIT 1;
+            INSERT INTO itens_pedido (pedido_id,produto_id,nome_produto,preco_unitario,quantidade)
+                SELECT id,900,'Produto extra',9.90,1 FROM pedidos WHERE numero_pedido='TESTE-INSTALADOR';
+        """)
+        chave = sql("SELECT CONSTRAINT_NAME FROM information_schema.KEY_COLUMN_USAGE WHERE TABLE_SCHEMA='petshop' AND TABLE_NAME='pedidos' AND REFERENCED_TABLE_NAME='usuarios'")
+        sql("ALTER TABLE petshop.pedidos DROP FOREIGN KEY `"+chave+"`, ADD CONSTRAINT pedidos_antigo FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE;")
+        sql('ALTER TABLE petshop.usuarios DROP COLUMN ativo, DROP COLUMN desativado_em;')
+        instalar()
+        conferir(sql('SELECT COUNT(*) FROM petshop.produtos') == '39', 'Instalador preserva produto extra')
+        conferir(sql("SELECT imagem FROM petshop.produtos WHERE id=800") == 'assets/produtos/racao-premium-caes-adultos-15kg.webp', 'Instalador atualiza link antigo preservando ID')
+        conferir(sql("SELECT imagem FROM petshop.produtos WHERE id=2") == 'assets/banners/banho-e-tosa.jpg', 'Instalador preserva foto local existente')
+        conferir(sql("SELECT senha_hash FROM petshop.usuarios WHERE perfil='master'") == 'hash-anterior-preservado', 'Instalador nao redefine senha existente')
+        conferir(sql("SELECT DELETE_RULE FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='petshop' AND TABLE_NAME='pedidos' AND REFERENCED_TABLE_NAME='usuarios'") == 'RESTRICT', 'Instalador substitui CASCADE por RESTRICT')
+        conferir(sql('SELECT ativo FROM petshop.usuarios LIMIT 1') == '1', 'Instalador adiciona status ausente')
+        conferir(sql('SELECT desativado_em IS NULL FROM petshop.usuarios LIMIT 1') == '1', 'Instalador adiciona data de desativacao')
+        conferir(sql('SELECT COUNT(*) FROM petshop.pedidos') == '1' and sql('SELECT COUNT(*) FROM petshop.itens_pedido WHERE produto_id=900') == '1', 'Instalador preserva pedidos e itens')
+        dados = json.loads(fallback.read_text().split('=',1)[1].strip().rstrip(';'))
+        conferir(len(dados) == 39 and any(p['id'] == 800 for p in dados), 'Fallback usa IDs reais e inclui produto extra')
+        instalar()
+        conferir(sql('SELECT COUNT(*) FROM petshop.produtos') == '39', 'Atualizacao antiga pode ser repetida')
+
+        # Banco parcial, como a primeira instalacao que so possuia usuarios e logs.
+        sql('DROP DATABASE petshop;')
+        sql(schema.split('CREATE TABLE categorias')[0].replace('    ativo TINYINT(1) NOT NULL DEFAULT 1,\n','').replace('    desativado_em DATETIME NULL,\n',''))
+        instalar()
+        conferir(len(sql('SHOW TABLES FROM petshop').splitlines()) == 6, 'Instalador completa banco com apenas duas tabelas')
+        conferir(sql('SELECT COUNT(*) FROM petshop.produtos') == '38', 'Banco parcial recebe catalogo completo')
+        sql("UPDATE petshop.usuarios SET perfil='comum' WHERE login='master';")
+        resultado = instalar(falha=True)
+        conferir('nenhum perfil foi alterado' in resultado.stderr, 'Conflito de master tem mensagem clara')
+        conferir(sql("SELECT perfil FROM petshop.usuarios WHERE login='master'") == 'comum', 'Instalador nao promove conta por conflito de login')
+    finally:
+        fallback.write_bytes(original)
+
+
 def executar():
     # Antes de qualquer escrita, confirmar o datadir do servidor descartavel.
     datadir = Path(sql("SELECT @@datadir")).resolve()
     if not str(datadir).startswith('/tmp/petshop-') or datadir != PASTA / 'mysql':
         raise RuntimeError('Servidor nao descartavel: teste interrompido sem alterar dados.')
+    testar_instalador()
     sql('DROP DATABASE IF EXISTS petshop;')
     sql((REPO / 'petshop-backend/sql/schema.sql').read_text())
     conferir(sql('SELECT COUNT(*) FROM petshop.produtos') == '38', 'Schema instala 38 produtos')

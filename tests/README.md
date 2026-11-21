@@ -17,6 +17,9 @@ python3 tests/integracao_backend.py
 encerra os processos ao terminar. Os PDFs e logs ficam na pasta temporária
 indicada no resultado. Não precisa de sudo nem da senha do banco de uso diário.
 
+A suíte também testa o instalador em banco vazio, parcial e antigo, sua repetição,
+a proteção dos pedidos, as senhas existentes e os caminhos das fotos.
+
 A suite contém casos de cadastro, validação de senha/telefone/CPF/data, sessões,
 2FA, permissões master/comum, consulta por substring, exclusão lógica,
 restauração, preservação dos pedidos, logs, troca de senha e exportação PDF.
