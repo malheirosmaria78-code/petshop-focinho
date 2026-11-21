@@ -4,6 +4,10 @@ Faça backup antes de alterar o banco. Execute os comandos na pasta que contém
 `petshop-frontend` e `petshop-backend`, com o MySQL ligado e as credenciais
 `PETSHOP_DB_USER` e `PETSHOP_DB_PASSWORD` configuradas para o PHP.
 
+Para fazer tudo em uma execução, use `php petshop-backend/scripts/instalar_banco.php`.
+Ele também completa tabelas ausentes e mantém a senha do master existente.
+As etapas abaixo servem para atualizar apenas contas ou apenas catálogo.
+
 ## Contas e pedidos
 
 ```bash

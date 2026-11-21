@@ -2,8 +2,8 @@
 
 ## Setup
 
-1. Suba o banco de dados executando `sql/schema.sql` no MySQL (cria o banco `petshop`, as tabelas, o usuário master e alguns produtos de exemplo).
-2. Configure `PETSHOP_DB_USER` e `PETSHOP_DB_PASSWORD` no ambiente que executa o PHP se não estiver usando `root` sem senha.
+1. Se o MySQL usa outro usuário, configure `PETSHOP_DB_USER` no ambiente que executa o PHP. A senha pode ser configurada em `PETSHOP_DB_PASSWORD`; se não estiver definida, o instalador pergunta no terminal.
+2. Na pasta principal do projeto, execute `php petshop-backend/scripts/instalar_banco.php`. Ele cria as tabelas ausentes, prepara as contas e sincroniza os 38 produtos. Em banco existente, faça backup antes. A importação de `sql/schema.sql` continua como alternativa para banco novo.
 3. O usuário master já vem criado pelo próprio `schema.sql`, com a senha já em hash bcrypt direto no `INSERT` (sem depender de PHP em tempo de execução):
    Login: `master` / Senha: `Adminpet`
 4. Sirva frontend e backend pelo mesmo servidor, conforme o [passo a passo principal](../README.md#como-executar-localmente). A URL da API é resolvida automaticamente; não é necessário alterar CORS nesse modo.
@@ -15,6 +15,9 @@ A senha inicial acima vale para bancos novos. Contas existentes mantêm suas sen
 
 ## Bancos ja existentes
 
+O instalador já executa as duas atualizações abaixo. Não precisa repeti-las
+se a instalação terminou com sucesso. Para executar apenas uma etapa:
+
 Para usar desativacao e reativacao sem perder registros, faca um backup e execute
 `php scripts/atualizar_contas.php` nesta pasta, com as credenciais do banco no
 ambiente. O mesmo script funciona em MySQL e MariaDB e pode ser repetido.
@@ -22,8 +25,7 @@ Novas instalacoes usam `sql/schema.sql`, que ja inclui a estrutura atual e os
 38 produtos. Para atualizar o catalogo de um banco existente, execute
 `php scripts/atualizar_catalogo.php` nesta pasta. Ele sincroniza por nome sem
 alterar IDs nem apagar pedidos, preserva fotos locais em assets/ e regenera
-`produtos-fallback.js` com os IDs reais. Os caminhos locais das fotos ja estao preparados. Os arquivos ainda precisam
-ser adicionados conforme o README em petshop-frontend/assets/produtos.
+`produtos-fallback.js` com os IDs reais. As fotos estão em `petshop-frontend/assets/produtos`.
 
 O endpoint antigo de exclusao continua apenas desativando contas. Nao ha exclusao
 definitiva nesta integracao. Pedidos ficam protegidos por `ON DELETE RESTRICT`.
